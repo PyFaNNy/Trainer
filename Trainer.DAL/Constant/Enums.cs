@@ -34,6 +34,8 @@ namespace Trainer.DAL.Util.Constant
         AgeSort,
         AgeSortDesc,
         SexSort,
-        SexSortDesc
+        SexSortDesc,
+        TypeSort,
+        TypeSortDesc
     }
 }

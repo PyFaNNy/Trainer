@@ -143,6 +143,12 @@ namespace Trainer.BLL.Services
 
             switch (sortOrder)
             {
+                case SortState.TypeSort:
+                    examinationView = examinationView.OrderBy(s => s.TypePhysicalActive);
+                break;
+                case SortState.TypeSortDesc:
+                    examinationView = examinationView.OrderByDescending(s => s.TypePhysicalActive);
+                break;
                 case SortState.FirstNameSort:
                     examinationView = examinationView.OrderBy(s => s.Patient.FirstName);
                     break;

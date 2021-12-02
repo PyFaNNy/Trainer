@@ -17,7 +17,6 @@
             @if (User.IsInRole("doctor"))
             {
                 <th></th>
-                <th></th>
                 <th><input type="checkbox" name="cb_all"></th>
             }
         </tr>
@@ -30,10 +29,12 @@
                     <td>@examination.Patient.LastName</td>
                     <td>@examination.Patient.FirstName</td>
                     <td>@examination.Patient.MiddleName</td>
-                    @if (User.IsInRole("doctor") && (int)examination.Status==0)
+                    @if (User.IsInRole("doctor") && (int)examination.Status == 0)
                     {
-                        <td><a class="btn btn-success" asp-controller="Examination" asp-action="GetModel" asp-route-id="@examination.Id">Начать сеанс</a></td>
-                        <td><a class="btn btn-primary" asp-controller="Examination" asp-action="UpdateModel" asp-route-id="@examination.Id">Редактировать</a></td>
+                        <td>
+                            <a class="btn btn-success" asp-controller="Examination" asp-action="GetModel" asp-route-id="@examination.Id"><i class="fas fa-check"></i></a>
+                            <a class="btn btn-primary" asp-controller="Examination" asp-action="UpdateModel" asp-route-id="@examination.Id"><i class="fas fa-pen"></i></a>
+                        </td>
                         <td><input type="checkbox" class="examination" name="selectedExamination" value="@examination.Id" /></td>
                     }
                 </tr>
