@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Редактировать обследование";
+}
+@model ExaminationViewModel
+<h2>Редактировать обследование</h2>
+<form method="post" enctype="multipart/form-data" asp-controller="Examination" asp-action="UpdateModel" asp-route-id="@ViewBag.Examination.Id">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="TypePhysicalActive">Вид физической нагрузки</label><br />
+            <select asp-for="TypePhysicalActive" class="form-control" id="select">
+                <option>Выберите вид нагрузки</option>
+                <option value="0">Бег</option>
+                <option value="1">Хотьба</option>
+                <option value="2">Велосипед</option>
+                <option value="3">Плавание</option>
+                <option value="4">Силовые упражнения</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Датчики</label><br />
+            <div class="form-check">
+                @if (ViewBag.Examination.Indicator1)
+                {
+                    <input type="checkbox" asp-for="Indicator1" class="form-check-input" checked />
+                }
+                else
+                {
+                    <input type="checkbox" asp-for="Indicator1" class="form-check-input" />
+                }
+                <label class="form-check-label">Измерения кровяного давления</label>
+            </div>
+            <div class="form-check">
+                @if (ViewBag.Examination.Indicator2)
+                {
+                    <input type="checkbox" asp-for="Indicator2" class="form-check-input" checked />
+                }
+                else
+                {
+                    <input type="checkbox" asp-for="Indicator2" class="form-check-input" />
+                }
+                <label class="form-check-label">Измерения температуры кожи</label>
+            </div>
+            <div class="form-check">
+                @if (ViewBag.Examination.Indicator3)
+                {
+                    <input type="checkbox" asp-for="Indicator3" class="form-check-input" checked />
+                }
+                else
+                {
+                    <input type="checkbox" asp-for="Indicator3" class="form-check-input" />
+                }
+                <label class="form-check-label">Измерения пульса</label>
+            </div>
+            <div class="form-check">
+                @if (ViewBag.Examination.Indicator4)
+                {
+                    <input type="checkbox" asp-for="Indicator4" class="form-check-input" checked/>
+                }
+                else
+                {
+                    <input type="checkbox" asp-for="Indicator4" class="form-check-input" />
+                }
+            <label class="form-check-label">Измерения сатурации</label>
+            </div>
+            @*<div class="form-check">
+                <input type="checkbox" asp-for="Indicator5" class="form-check-input" />
+                <label class="form-check-label">Измерения частоты пульса сердечного ритма</label>
+            </div>*@
+        </div>
+        <div>
+
+            <div>
+                <button type="submit" class="btn btn-primary mt-1">Редактировать</button>
+            </div>
+        </div>
+</form>
+
+<script>
+    document.getElementById('select').value = @((int)ViewBag.Examination.TypePhysicalActive);
+</script>

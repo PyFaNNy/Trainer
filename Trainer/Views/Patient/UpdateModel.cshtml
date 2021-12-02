@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Редактировать пациента";
+}
+@model PatientViewModel
+<h2>Редактировать пациента</h2>
+<form method="post" enctype="multipart/form-data" asp-controller="Patient" asp-action="UpdateModel" asp-route-id="@ViewBag.Patient.Id">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="FirstName">Имя</label><br />
+            <input asp-for="FirstName" value="@ViewBag.Patient.FirstName" class="form-control" />
+            <span asp-validation-for="FirstName"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="MiddleName">Отчество</label><br />
+            <input asp-for="MiddleName" value="@ViewBag.Patient.MiddleName" class="form-control" />
+            <span asp-validation-for="MiddleName"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="LastName">Фамилия</label><br />
+            <input asp-for="LastName" value="@ViewBag.Patient.MiddleName" class="form-control" />
+            <span asp-validation-for="LastName"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Age">Возраст</label><br />
+            <input asp-for="Age" value="@ViewBag.Patient.Age" class="form-control" />
+            <span asp-validation-for="Age"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Sex">Пол</label><br />
+            <select asp-for="Sex" class="form-control" id="select">
+                <option>Выберите пол</option>
+                <option value="0">Женжина</option>
+                <option value="1">Мужчина</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary mt-1">Редактировать</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    document.getElementById('select').value = @((int)ViewBag.Patient.Sex);
+</script>

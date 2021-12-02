@@ -1,0 +1,10 @@
+D:\Programming\C#\Лабораторные\Trainer.DAL\bin\Debug\netcoreapp3.1\Trainer.DAL.deps.json
+D:\Programming\C#\Лабораторные\Trainer.DAL\bin\Debug\netcoreapp3.1\Trainer.DAL.dll
+D:\Programming\C#\Лабораторные\Trainer.DAL\bin\Debug\netcoreapp3.1\Trainer.DAL.pdb
+D:\Programming\C#\Лабораторные\Trainer.DAL\obj\Debug\netcoreapp3.1\Trainer.DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programming\C#\Лабораторные\Trainer.DAL\obj\Debug\netcoreapp3.1\Trainer.DAL.AssemblyInfoInputs.cache
+D:\Programming\C#\Лабораторные\Trainer.DAL\obj\Debug\netcoreapp3.1\Trainer.DAL.AssemblyInfo.cs
+D:\Programming\C#\Лабораторные\Trainer.DAL\obj\Debug\netcoreapp3.1\Trainer.DAL.csproj.CoreCompileInputs.cache
+D:\Programming\C#\Лабораторные\Trainer.DAL\obj\Debug\netcoreapp3.1\Trainer.DAL.dll
+D:\Programming\C#\Лабораторные\Trainer.DAL\obj\Debug\netcoreapp3.1\Trainer.DAL.pdb
+D:\Programming\C#\Лабораторные\Trainer.DAL\obj\Debug\netcoreapp3.1\Trainer.DAL.csproj.AssemblyReference.cache

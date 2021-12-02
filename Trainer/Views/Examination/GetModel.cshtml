@@ -1,0 +1,432 @@
+﻿@{
+    ViewData["Title"] = "Сеанс";
+}
+<div class="row mb-2">
+    <button type="button" id="start" class="btn btn-success btn-block">Начать сеанс</button>
+</div>
+<div class="container" style="height: calc(100vh - 200px);">
+    <div class="row h-100">
+        <div class="col human h-100">
+            <div class="row h-25">
+                <div class="col-4">
+                    <select id="2" class="form-control" style="opacity: 0.5;" onchange='findOption2(this)'>
+                        <option value=0></option>
+                        <option value=1>Тонометр</option>
+                        <option value=2>Термометр</option>
+                        <option value=3>Пульсометр</option>
+                        <option value=4>Оксиметр</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row h-25">
+                <div class="col-4">
+                    <select id="3" class="form-control" style="opacity: 0.5;" onchange='findOption3(this)'>
+                        <option value=0></option>
+                        <option value=1>Тонометр</option>
+                        <option value=2>Термометр</option>
+                        <option value=3>Пульсометр</option>
+                        <option value=4>Оксиметр</option>
+                    </select>
+                </div>
+                <div class="col"></div>
+                <div class="col-4">
+                    <select id="1" class="form-control" style="opacity: 0.5;" onchange='findOption1(this)'>
+                        <option value=0></option>
+                        <option value=1>Тонометр</option>
+                        <option value=2>Термометр</option>
+                        <option value=3>Пульсометр</option>
+                        <option value=4>Оксиметр</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row h-25">
+                <div class="col-4"></div>
+                <div class="col-4">
+                    <select id="4" class="form-control" style="opacity: 0.5;" onchange='findOption4(this)'>
+                        <option value="0"></option>
+                        <option value="1">Тонометр</option>
+                        <option value="2">Термометр</option>
+                        <option value="3">Пульсометр</option>
+                        <option value="4">Оксиметр</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col h-100" style="overflow-y: auto;">
+            <div class="row h-25">
+                <div class="col tonometr"></div>
+                <div class="col">
+                    <button type="button" id="testTonometr" class="btn btn-primary mt-1">Тестировать</button>
+
+                    <div class="form-check">
+                        <input class="form-check-input" value="1" type="radio" name="tonometr" id="tonometrON" onclick="tonometrClick(this);">
+                        <label class="form-check-label" for="tonometrON">
+                            Вкл
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" value="0" type="radio" name="tonometr" id="tonometrOFF" onclick="tonometrClick(this);" checked>
+                        <label class="form-check-label" for="tonometrOFF">
+                            Выкл
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row h-50 mb-5">
+                <div class="card">
+                    <h4 class="card-header">
+                        Измерение давления
+                    </h4>
+                    <div class="card-body">
+                        <canvas id="myChart" height="300" width="500">Chart is Loading...</canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="row h-25">
+                <div class="col termometr"></div>
+                <div class="col">
+                    <button type="button" id="testTermometr" class="btn btn-primary mt-1">Тестировать</button>
+                    <div class="form-check">
+                        <input class="form-check-input" value="1" type="radio" name="termometr" id="termometrON" onclick="termometrClick(this);">
+                        <label class="form-check-label" for="termometrON">
+                            Вкл
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" value="0" type="radio" name="termometr" id="termometrOFF" onclick="termometrClick(this);" checked>
+                        <label class="form-check-label" for="termometrOFF">
+                            Выкл
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row h-50 mb-5">
+                <div class="card">
+                    <h4 class="card-header">
+                        Измерение температуры
+                    </h4>
+                    <div class="card-body">
+                        <canvas id="myChart1" width="500" height="300">Chart is Loading...</canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="row h-25">
+                <div class="col heartrate"></div>
+                <div class="col">
+                    <button type="button" id="testHeartrate" class="btn btn-primary mt-1">Тестировать</button>
+                    <div class="form-check">
+                        <input class="form-check-input" value="1" type="radio" name="heartrate" id="heartrateON" onclick="heartrateClick(this);">
+                        <label class="form-check-label" for="heartrateON">
+                            Вкл
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" value="0" type="radio" name="heartrate" id="heartrateOFF" onclick="heartrateClick(this);" checked>
+                        <label class="form-check-label" for="heartrateOFF">
+                            Выкл
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row h-50 mb-5">
+                <div class="card">
+                    <h4 class="card-header">
+                        Измерение пульса
+                    </h4>
+                    <div class="card-body">
+                        <canvas id="myChart2" width="500" height="300">Chart is Loading...</canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="row h-25">
+                <div class="col oximetr"></div>
+                <div class="col">
+                    <button type="button" id="testOximetr" class="btn btn-primary mt-1">Тестировать</button>
+                    <div class="form-check">
+                        <input class="form-check-input" value="1" type="radio" name="oximetr" id="oximetrON" onclick="oximetrClick(this);">
+                        <label class="form-check-label" for="oximetrON">
+                            Вкл
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" value="0" type="radio" name="oximetr" id="oximetrOFF" onclick="oximetrClick(this);" checked>
+                        <label class="form-check-label" for="oximetrOFF">
+                            Выкл
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row h-50 mb-5">
+                <div class="card">
+                    <h4 class="card-header">
+                        Измерение содержания кислорода в крови
+                    </h4>
+                    <div class="card-body">
+                        <canvas id="myChart3" width="500" height="300">Chart is Loading...</canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js" integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="~/js/signalr/dist/browser/signalr.min.js"></script>
+
+<script type="text/javascript">
+    var connection = new signalR.HubConnectionBuilder().withUrl("/chart").build();
+    let statTermometr = -1;
+    let statTonometr = -1;
+    let statHeartrate = -1;
+    let statOximetr = -1;
+    let select1 = -1;
+    let select2 = -1;
+    let select3 = -1;
+    let select4 = -1;
+    let tonometrValue = 0;
+    let termometrValue = 0;
+    let heartrateValue = 0;
+    let oximetrValue = 0;
+
+    window.onload = function () {
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+
+        window.myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Dia',
+                    data: [],
+                },
+                    {
+                        label: 'Sis',
+                        data: [],
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    xAxis: {
+                        type: 'linear',
+                        suggestedMin: 0,
+                        suggestedMax: 60,
+                        step:1
+                    },
+                    y: {
+                        suggestedMin: 0,
+                        suggestedMax: 200,
+                        step: 10,
+                    }
+                }
+            }
+        });
+
+        var ctx = document.getElementById('myChart1').getContext('2d');
+        
+        window.myChart1 = new Chart(ctx, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Температура',
+                    data: []
+                }]
+            },
+            options: {
+                scales: {
+                    xAxis: {
+                        type: 'linear',
+                        suggestedMin: 0,
+                        suggestedMax: 60,
+                        step: 1
+                    },
+                    y: {
+                        suggestedMin: 0,
+                        suggestedMax: 50,
+                        step: 2
+                    }
+                }
+            }
+        });
+
+        var ctx = document.getElementById('myChart2').getContext('2d');
+
+        window.myChart2 = new Chart(ctx, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Пульс',
+                    data: []
+                }]
+            },
+            options: {
+                scales: {
+                    xAxis: {
+                        type: 'linear',
+                        suggestedMin: 0,
+                        suggestedMax: 60,
+                        step: 1
+                    },
+                    y: {
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        step: 5,
+                    }
+                }
+            }
+        });
+
+        var ctx = document.getElementById('myChart3').getContext('2d');
+
+        window.myChart3 = new Chart(ctx, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Сепарация',
+                    data: []
+                }]
+            },
+            options: {
+                scales: {
+                    xAxis: {
+                        type: 'linear',
+                        suggestedMin: 0,
+                        suggestedMax: 60,
+                        step: 1
+                    },
+                    y: {
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        step: 5,
+                    }
+                }
+            }
+        });
+
+    }
+
+    connection.on("newTonom", function (time, dia, sis) {
+
+        myChart.data.datasets[0].data.push({
+            x: time,
+            y: dia
+        });
+        myChart.data.datasets[1].data.push({
+            x: time,
+            y: sis
+        });
+        myChart.update();
+    });
+
+    connection.on("newTermom", function (time, temp) {
+
+        myChart1.data.datasets[0].data.push({
+            x: time,
+            y: temp
+        });
+        myChart1.update();
+    });
+
+    connection.on("newHearRate", function (time, heartRate) {
+
+        myChart2.data.datasets[0].data.push({
+            x: time,
+            y: heartRate
+        });
+        myChart2.update();
+    });
+
+    connection.on("newOximetr", function (time, separation) {
+
+        myChart3.data.datasets[0].data.push({
+            x: time,
+            y: separation
+        });
+        myChart3.update();
+    });
+
+    connection.on("statusTonometr", function (status, count) {
+        statTonometr = count;
+        window.alert("Тонометр " + status);
+    });
+
+    connection.on("statusTermometr", function (status, count) {
+        statTermometr = count;
+        window.alert("Термометр " + status);
+    });
+
+    connection.on("statusHeartrate", function (status, count) {
+        statHeartrate = count;
+        window.alert("Пульсометр " + status);
+    });
+
+    connection.on("statusOximetr", function (status, count) {
+        statOximetr = count;
+        window.alert("Оксиметр " + status);
+    });
+
+    connection.on("error", function (messange) {
+        window.alert(messange);
+    });
+
+    document.getElementById("start").addEventListener("click", function (e) {
+        let id = "@ViewBag.Id"
+        connection.invoke("ProvideReading", statTermometr.toString(), statTonometr.toString(), statHeartrate.toString(), statOximetr.toString(),
+            select1.toString(), select2.toString(), select3.toString(), select4.toString(), tonometrValue.toString(), termometrValue.toString(), heartrateValue.toString(), oximetrValue.toString(), id);
+    });
+
+    document.getElementById("testTonometr").addEventListener("click", function (e) {
+        connection.invoke("TestTonomert");
+    });
+
+    document.getElementById("testTermometr").addEventListener("click", function (e) {
+        connection.invoke("TestTermometr");
+    });
+
+    connection.on('RedirectHome', data => {
+        window.location.href = `/Examination/GetModels`
+    });
+
+    document.getElementById("testHeartrate").addEventListener("click", function (e) {
+        connection.invoke("TestHeartrate");
+    });
+
+    document.getElementById("testOximetr").addEventListener("click", function (e) {
+        connection.invoke("TestOximetr");
+    });
+
+    function findOption1(select) {
+        select1 = select.querySelector(`option[value="${select.value}"]`).value
+    }
+
+    function findOption2(select) {
+        select2 = select.querySelector(`option[value="${select.value}"]`).value
+    }
+
+    function findOption3(select) {
+        select3 = select.querySelector(`option[value="${select.value}"]`).value
+    }
+
+    function findOption4(select) {
+        select4 = select.querySelector(`option[value="${select.value}"]`).value
+    }
+
+    function tonometrClick(myRadio) {
+        tonometrValue = myRadio.value;
+    }
+
+    function termometrClick(myRadio) {
+        termometrValue = myRadio.value;
+    }
+
+    function heartrateClick(myRadio) {
+        heartrateValue = myRadio.value;
+    }
+
+    function oximetrClick(myRadio) {
+        oximetrValue = myRadio.value;
+    }
+
+    connection.start();
+</script>
