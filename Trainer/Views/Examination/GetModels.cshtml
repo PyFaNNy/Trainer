@@ -14,6 +14,7 @@
             <th><a asp-controller="Examination" asp-action="GetModels" asp-route-sortOrder="@ViewBag.LastNameSort">Фамилия</a></th>
             <th><a asp-controller="Examination" asp-action="GetModels" asp-route-sortOrder="@ViewBag.FirstNameSort">Имя</a></th>
             <th><a asp-controller="Examination" asp-action="GetModels" asp-route-sortOrder="@ViewBag.MiddleNameSort">Отчество</a></th>
+            <th><a asp-controller="Examination" asp-action="GetModels" asp-route-sortOrder="@ViewBag.DateSort">Дата обследования</a></th>
             @if (User.IsInRole("doctor"))
             {
                 <th></th>
@@ -29,12 +30,18 @@
                     <td>@examination.Patient.LastName</td>
                     <td>@examination.Patient.FirstName</td>
                     <td>@examination.Patient.MiddleName</td>
+                    <td>@examination.Date.ToString("d")</td>
                     @if (User.IsInRole("doctor") && (int)examination.Status == 0)
                     {
                         <td>
                             <a class="btn btn-success" asp-controller="Examination" asp-action="GetModel" asp-route-id="@examination.Id"><i class="fas fa-check"></i></a>
                             <a class="btn btn-primary" asp-controller="Examination" asp-action="UpdateModel" asp-route-id="@examination.Id"><i class="fas fa-pen"></i></a>
                         </td>
+                        <td><input type="checkbox" class="examination" name="selectedExamination" value="@examination.Id" /></td>
+                    }
+                    else if (User.IsInRole("doctor"))
+                    {
+                        <td></td>
                         <td><input type="checkbox" class="examination" name="selectedExamination" value="@examination.Id" /></td>
                     }
                 </tr>

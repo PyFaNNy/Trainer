@@ -34,6 +34,7 @@ namespace Trainer.Controllers
         [HttpGet]
         public async Task<IActionResult> GetModels(SortState sortOrder = SortState.FirstNameSort)
         {
+            ViewData["DateSort"] = sortOrder == SortState.DateSort ? SortState.DateSortDesc : SortState.DateSort;
             ViewData["TypeSort"] = sortOrder == SortState.TypeSort ? SortState.TypeSortDesc : SortState.TypeSort;
             ViewData["FirstNameSort"] = sortOrder == SortState.FirstNameSort ? SortState.FirstNameSortDesc : SortState.FirstNameSort;
             ViewData["LastNameSort"] = sortOrder == SortState.LastNameSort ? SortState.LastNameSortDesc : SortState.LastNameSort;
@@ -73,7 +74,6 @@ namespace Trainer.Controllers
         {
             try
             {
-                model.Date = DateTime.UtcNow;
                 CountIndicators(model);
                 _validator.ValidateAndThrow(model);
                 var examinationDto = _mapper.Map<ExaminationDTO>(model);
