@@ -28,22 +28,22 @@ namespace Trainer.Chart
             var exam = _mapper.Map<ExaminationViewModel>(examination);
             CountIndicators(exam);
 
-            if (exam.Indicator1 && (select1 != "1" || tonometrValue != "1") && statTonometr == "0")
+            if (exam.Indicator1 && (select1 != "1" || tonometrValue != "1" || statTonometr != "0"))
             {
                 await this.Clients.Caller.SendAsync("error", "Не правильно подключен тонометр");
                 flag = false;
             }
-            if (exam.Indicator2 && (select2 != "2" || termometrValue != "1") && statTermometr == "0")
+            if (exam.Indicator2 && (select2 != "2" || termometrValue != "1" || statTermometr != "0"))
             {
                 await this.Clients.Caller.SendAsync("error", "Не правильно подключен термометр");
                 flag = false;
             }
-            if (exam.Indicator3 && (select3 != "3" || heartrateValue != "1") && statHeartrate == "0")
+            if (exam.Indicator3 && (select3 != "3" || heartrateValue != "1" || statHeartrate != "0"))
             {
                 await this.Clients.Caller.SendAsync("error", "Не правильно подключен пульсометр");
                 flag = false;
             }
-            if (exam.Indicator4 && (select4 != "4" || oximetrValue != "1") && statOximetr == "0")
+            if (exam.Indicator4 && (select4 != "4" || oximetrValue != "1" || statOximetr != "0"))
             {
                 await this.Clients.Caller.SendAsync("error", "Не правильно подключен оксиметр");
                 flag = false;
