@@ -2,7 +2,12 @@
     ViewData["Title"] = "Сеанс";
 }
 <div class="row mb-2">
-    <button type="button" id="start" class="btn btn-success btn-block">Начать сеанс</button>
+    <div class="col">
+        <button type="button" id="start" class="btn btn-success btn-block">Начать сеанс</button>
+    </div>
+    <div class="col-1">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-info"></i></button>
+    </div>
 </div>
 <div class="container" style="height: calc(100vh - 200px);">
     <div class="row h-100">
@@ -169,7 +174,59 @@
         </div>
     </div>
 </div>
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Информация о обследовании</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <span>Пациент: @Model.Patient.LastName @Model.Patient.FirstName @Model.Patient.MiddleName</span>
+                </div>
+                <div class="row">
+                    <span>Возраст: @Model.Patient.Age</span>
+                </div>
+                <div class="row">
+                    <span>Пол: @Model.Patient.Sex</span>
+                </div>
+                <div class="row">
+                    <span>Дата обследования: @Model.Date</span>
+                </div>
+                <div class="row">
+                    <span>Вид физической нагрузки: @Model.TypePhysicalActive</span>
+                </div>
+                <div class="row">
+                    <span>Проводимые измерения:</span>
+                </div>
+                <ul>
+                    @if (Model.Indicator1)
+                    {
+                        <li>Давление</li>
+                    }
+                    @if (Model.Indicator2)
+                    {
+                        <li>Температура</li>
+                    }
+                    @if (Model.Indicator3)
+                    {
+                        <li>Пульс</li>
+                    }
+                    @if (Model.Indicator4)
+                    {
+                        <li>Сепарация</li>
+                    } 
+                </ul>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js" integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="~/js/signalr/dist/browser/signalr.min.js"></script>
@@ -224,7 +281,7 @@
         });
 
         var ctx = document.getElementById('myChart1').getContext('2d');
-        
+
         window.myChart1 = new Chart(ctx, {
             type: 'line',
             data: {

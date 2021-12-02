@@ -51,6 +51,7 @@ namespace Trainer.Controllers
                 ExaminationDTO examinationDTO = await _contextService.GetExamination(id);
                 var examinationView = _mapper.Map<ExaminationViewModel>(examinationDTO);
                 ViewBag.Id = examinationView.Id;
+                InvCountIndicators(examinationView);
                 return View(examinationView);
             }
             catch (RecordNotFoundException ex)

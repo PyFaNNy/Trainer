@@ -25,7 +25,7 @@ namespace Trainer.DAL.Repositories
 
         public async Task<Examination> Get(Guid id)
         {
-            return await Db.Examinations.FindAsync(id);
+            return await Db.Examinations.Include(x => x.Patient).Where(x=> x.Id==id).FirstOrDefaultAsync();
         }
 
         public async Task<Examination> Create(Examination examination)
