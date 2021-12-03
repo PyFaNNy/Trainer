@@ -216,5 +216,76 @@ namespace Trainer.BLL.Services
 
             await _database.Examinations.Delete(examination.Id);
         }
+
+        public async Task<ResultsDTO> GetResult(Guid id)
+        {
+            ResultsDTO resultsDTO = null;
+            Results examination = await _database.Results.Get(id);
+            if (examination != null)
+            {
+                resultsDTO = _mapper.Map<ResultsDTO>(examination);
+            }
+            else
+            {
+                throw new RecordNotFoundException("Record not found. Check id");
+            }
+
+            return resultsDTO;
+        }
+
+        public async Task<IEnumerable<ResultsDTO>> GetResults()
+        {
+            var results = await _database.Results.GetAll();
+            var resultsView = _mapper.Map<IEnumerable<Results>, IEnumerable<ResultsDTO>>(results);
+
+            return resultsView;
+        }
+
+        public async Task<IEnumerable<ResultsDTO>> GetPatientResults(Guid id)
+        {
+            var results = await _database.GetPatientResults(id);
+            var resultsView = _mapper.Map<IEnumerable<Results>, IEnumerable<ResultsDTO>>(results);
+
+            return resultsView;
+        }
+
+        public async Task<ResultsDTO> Create(ResultsDTO examinationDTO)
+        {
+            Results newResults = _mapper.Map<Results>(examinationDTO);
+
+            var returnResults = _mapper.Map<ResultsDTO>(await _database.Results.Create(newResults));
+
+            return returnResults;
+        }
+
+        public async Task<ResultsDTO> Update(ResultsDTO resultsDTO)
+        {
+            Results results = await _database.Results.Get(resultsDTO.Id);
+            if (results == null)
+            {
+                throw new RecordNotFoundException("Record not found. Check id");
+            }
+
+            results.AverageDia = resultsDTO.AverageDia;
+            results.AverageHeartRate = resultsDTO.AverageHeartRate;
+            results.AverageSis = resultsDTO.AverageSis;
+            results.AverageOxigen = resultsDTO.AverageOxigen;
+            results.AverageTemperature = resultsDTO.AverageTemperature;
+
+            var returnExamination = _mapper.Map<ResultsDTO>(await _database.Results.Update(results));
+
+            return returnExamination;
+        }
+
+        public async Task DeleteResults(Guid id)
+        {
+            var result = await _database.Results.Get(id);
+            if (result == null)
+            {
+                throw new RecordNotFoundException("Record not found. Check id");
+            }
+
+            await _database.Results.Delete(result.Id);
+        }
     }
 }

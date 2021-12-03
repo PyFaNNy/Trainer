@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Trainer.DAL.Entities
+namespace Trainer.BLL.DTO
 {
-    public class Results
+    public class ResultsDTO
     {
         public Guid Id
         {
@@ -10,17 +10,17 @@ namespace Trainer.DAL.Entities
             set;
         }
 
-        public Guid? PatientId
+        public Guid PatientId
         {
             get;
             set;
         }
 
-        public Guid? ExaminationId
+        public Guid ExaminationId
         {
             get;
             set;
-        } 
+        }
 
         public int AverageHeartRate
         {
@@ -50,13 +50,13 @@ namespace Trainer.DAL.Entities
             set;
         }
 
-        public Patient Patient
+        public PatientDTO Patient
         {
             get;
             set;
         }
 
-        public Examination Examination
+        public ExaminationDTO Examination
         {
             get;
             set;

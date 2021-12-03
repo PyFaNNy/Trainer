@@ -18,6 +18,11 @@ namespace Trainer.Util
             CreateMap<ExaminationDTO, ExaminationViewModel>();
             CreateMap<Examination, ExaminationDTO>();
             CreateMap<ExaminationDTO, Examination>();
+
+            CreateMap<ResultsViewModel, ResultsDTO>();
+            CreateMap<ResultsDTO, ResultsViewModel>();
+            CreateMap<Results, ResultsDTO>();
+            CreateMap<ResultsDTO, Results>();
         }
     }
 }

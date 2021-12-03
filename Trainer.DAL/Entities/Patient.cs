@@ -47,6 +47,12 @@ namespace Trainer.DAL.Entities
             set;
         }
 
+        public IList<Results> Results
+        {
+            get;
+            set;
+        }
+
         public string About
         {
             get;

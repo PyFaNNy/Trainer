@@ -27,18 +27,35 @@
                     </div>
                     <div class="col-md-12">
                         <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span>Недавние обследования</h5>
-                        <table class="table table-sm table-hover table-striped">
-                            <tbody>
-                                @if (ViewBag.Results != null)
-                                    @foreach (var active in ViewBag.Active)
+                        @if (ViewBag.Results != null)
+                        {
+                            <table class="table table table-hover table-striped">
+                                <thead>
+                                <th>Вид</th>
+                                <th>Дата</th>
+                                <th>Dia</th>
+                                <th>Sis</th>
+                                <th>Сепарация</th>
+                                <th>Температура</th>
+                                <th>Пульс</th>
+                                </thead>
+                                <tbody>
+                                    @foreach (var active in ViewBag.Results)
                                     {
                                         <tr>
-                                            <td>@active.Type</td>
-                                            <td>@active.Date</td>
+                                            <td>@active.Examination.TypePhysicalActive</td>
+                                            <td>@active.Examination.Date.ToString()</td>
+                                            <td>@active.AverageDia</td>
+                                            <td>@active.AverageSis</td>
+                                            <td>@active.AverageOxigen</td>
+                                            <td>@Math.Round(active.AverageTemperature,2)</td>
+                                            <td>@active.AverageHeartRate</td>
                                         </tr>
                                     }
-                            </tbody>
-                        </table>
+
+                                </tbody>
+                            </table>
+                        }
                     </div>
                 </div>
             </div>

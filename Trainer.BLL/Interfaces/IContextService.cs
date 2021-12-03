@@ -19,5 +19,12 @@ namespace Trainer.BLL.Interfaces
         Task<ExaminationDTO> Create(ExaminationDTO examinationDTO);
         Task<ExaminationDTO> Update(ExaminationDTO examinationDTO);
         Task DeleteExamination(Guid id);
+
+        Task<ResultsDTO> GetResult(Guid id);
+        Task<IEnumerable<ResultsDTO>> GetResults();
+        Task<IEnumerable<ResultsDTO>> GetPatientResults(Guid id);
+        Task<ResultsDTO> Create(ResultsDTO examinationDTO);
+        Task<ResultsDTO> Update(ResultsDTO examinationDTO);
+        Task DeleteResults(Guid id);
     }
 }

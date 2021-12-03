@@ -47,6 +47,7 @@ namespace Trainer.Controllers
             try
             {
                 PatientDTO peopleDTO = await _contextService.GetPatient(id);
+                ViewBag.Results = await _contextService.GetPatientResults(id);
                 var peopleView = _mapper.Map<PatientViewModel>(peopleDTO);
                 return View(peopleView);
             }

@@ -10,7 +10,7 @@ namespace Trainer.Util
             RuleFor(x => x.Date).NotEmpty().GreaterThanOrEqualTo(System.DateTime.UtcNow);
             RuleFor(x => x.PatientId).NotNull();
             RuleFor(x => x.TypePhysicalActive).NotNull();
-            RuleFor(peopleDTO => peopleDTO.Indicators).ExclusiveBetween(1, 31);
+            RuleFor(peopleDTO => peopleDTO.Indicators).ExclusiveBetween(0, 31);
         }
     }
 }

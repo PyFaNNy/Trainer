@@ -46,5 +46,11 @@ namespace Trainer.DAL.Entities
             get;
             set;
         }
+
+        public Results Result
+        {
+            get;
+            set;
+        }
     }
 }

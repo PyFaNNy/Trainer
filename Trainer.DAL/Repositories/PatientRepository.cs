@@ -41,11 +41,6 @@ namespace Trainer.DAL.Repositories
             return patient;
         }
 
-        public IEnumerable<Patient> Find(Func<Patient, Boolean> predicate)
-        {
-            return Db.Patients.Where(predicate).ToList();
-        }
-
         public async Task Delete(Guid id)
         {
             Patient patient = Db.Patients.Find(id);

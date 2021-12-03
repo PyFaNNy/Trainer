@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Trainer.DAL.Entities
+namespace Trainer.Models
 {
-    public class Results
+    public class ResultsViewModel
     {
         public Guid Id
         {
@@ -10,23 +10,24 @@ namespace Trainer.DAL.Entities
             set;
         }
 
-        public Guid? PatientId
+        public Guid PatientId
         {
             get;
             set;
         }
 
-        public Guid? ExaminationId
+        public Guid ExaminationId
         {
             get;
             set;
-        } 
+        }
 
         public int AverageHeartRate
         {
             get;
             set;
         }
+
         public int AverageDia
         {
             get;
@@ -44,19 +45,20 @@ namespace Trainer.DAL.Entities
             get;
             set;
         }
+
         public double AverageTemperature
         {
             get;
             set;
         }
 
-        public Patient Patient
+        public PatientViewModel Patient
         {
             get;
             set;
         }
 
-        public Examination Examination
+        public ExaminationViewModel Examination
         {
             get;
             set;

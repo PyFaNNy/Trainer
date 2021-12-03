@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Trainer.BLL.DTO;
 using Trainer.BLL.Interfaces;
 using Trainer.Models;
 
@@ -54,8 +55,8 @@ namespace Trainer.Chart
                 uint time = 0;
                 int sis = 180;
                 int dia = 140;
-                int heartRate;
-                int sep;
+                int heartRate = 0, averageHeartRate = 0;
+                int sep = 0, avarageSep = 0;
                 double temperature = 35;
 
                 while (time <= 60)
@@ -74,19 +75,31 @@ namespace Trainer.Chart
                     if (exam.Indicator3)
                     {
                         heartRate = _rnd.Next(90, 160);
+                        averageHeartRate += heartRate;
                         await this.Clients.Caller.SendAsync("newHearRate", time, heartRate);
                     }
                     if (exam.Indicator4)
                     {
                         sep = _rnd.Next(90, 99);
+                        avarageSep += sep;
                         await this.Clients.Caller.SendAsync("newOximetr", time, sep);
                     }
                     time += 1;
-                    Thread.Sleep(1000);
+                    Thread.Sleep(100);
                 }
 
                 examination.Status = DAL.Util.Constant.Status.Finished;
-                var ads= _contextService.Update(examination);
+                var sa = await _contextService.Update(examination);
+                var asd= await _contextService.Create(new ResultsDTO()
+                {
+                    AverageDia = dia,
+                    AverageSis = sis,
+                    AverageTemperature = temperature,
+                    AverageOxigen = avarageSep/60,
+                    AverageHeartRate =averageHeartRate/60,
+                    ExaminationId = examination.Id,
+                    PatientId = examination.PatientId,
+                });
                 Thread.Sleep(1000);
                 await this.Clients.Caller.SendAsync("RedirectHome");
             }

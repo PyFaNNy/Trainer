@@ -43,11 +43,6 @@ namespace Trainer.DAL.Repositories
             return examination;
         }
 
-        public IEnumerable<Examination> Find(Func<Examination, Boolean> predicate)
-        {
-            return Db.Examinations.Where(predicate).ToList();
-        }
-
         public async Task Delete(Guid id)
         {
             Examination patient = Db.Examinations.Find(id);

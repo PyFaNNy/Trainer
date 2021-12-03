@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 using Trainer.DAL.EF;
 using Trainer.DAL.Entities;
 using Trainer.DAL.Interfaces;
@@ -12,6 +12,8 @@ namespace Trainer.DAL.Repositories
         private TrainerContext Db;
         private PatientRepository PatientRepository;
         private ExaminationRepository ExaminationRepository;
+        private ResultsRepository ResultsRepository;
+
 
         public EFUnitOfWork(TrainerContext db)
         {
@@ -35,6 +37,21 @@ namespace Trainer.DAL.Repositories
                     ExaminationRepository = new ExaminationRepository(Db);
                 return ExaminationRepository;
             }
+        }
+
+        public IRepository<Results> Results
+        {
+            get
+            {
+                if (ResultsRepository == null)
+                    ResultsRepository = new ResultsRepository(Db);
+                return ResultsRepository;
+            }
+        }
+
+        public async Task<IEnumerable<Results>> GetPatientResults(Guid id)
+        {
+            return await ((ResultsRepository)Results).GetPatientResults(id);
         }
     }
 }
