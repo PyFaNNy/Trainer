@@ -1,77 +1,100 @@
-﻿<div class="row">
-    <div class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
-        <div class="well profile">
-            <div class="col-sm-12">
-                <div class="col-xs-12 col-sm-8">
-                    <h2>Сергей Иванов</h2>
-                    <p><strong>Обо мне: </strong> Веб-дизайнер. </p>
-                    <p><strong>Хобби: </strong> Книги, природа, активный отдых, сайтостроение, дизайн, верстка </p>
-                    <p>
-                        <strong>Виды спорта: </strong>
-                        <span class="tags">Бег</span>
-                        <span class="tags">Футбол</span>
-                    </p>
-                </div>
-                <div class="col-xs-12 col-sm-4 text-center">
-                    <figure>
-                        <img src="/user-profile.jpg" alt="user" class="img-circle img-responsive">
-                        <figcaption class="ratings">
-                            <p>
-                                Рейтинг
-                                <a href="#">
-                                    <span class="fa fa-star"></span>
-                                </a>
-                                <a href="#">
-                                    <span class="fa fa-star"></span>
-                                </a>
-                                <a href="#">
-                                    <span class="fa fa-star"></span>
-                                </a>
-                                <a href="#">
-                                    <span class="fa fa-star"></span>
-                                </a>
-                                <a href="#">
-                                    <span class="fa fa-star-o"></span>
-                                </a>
-                            </p>
-                        </figcaption>
-                    </figure>
-                </div>
-            </div>
-            <div class="col-xs-12 divider text-center">
-                <div class="col-xs-12 col-sm-4 emphasis">
-                    <h2><strong> 32,4K </strong></h2>
-                    <p><small>Подписчиков</small></p>
-                    <button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Подписатся</button>
-                </div>
-                <div class="col-xs-12 col-sm-4 emphasis">
-                    <h2><strong>723</strong></h2>
-                    <p><small>Записей</small></p>
-                    <button class="btn btn-info btn-block"><span class="fa fa-user"></span> Профиль</button>
-                </div>
-                <div class="col-xs-12 col-sm-4 emphasis">
-                    <h2><strong>74</strong></h2>
-                    <p><small>Работы</small></p>
-                    <div class="btn-group dropup btn-block">
-                        <button type="button" class="btn btn-primary"><span class="fa fa-gear"></span> Опции</button>
-                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu text-left" role="menu">
-                            <li><a href="#"><span class="fa fa-envelope pull-right"></span> Отправить email </a></li>
-                            <li><a href="#"><span class="fa fa-list pull-right"></span> Редактировать список</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#"><span class="fa fa-warning pull-right"></span>Сообщить о спаме</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#" class="btn disabled" role="button"> Отписатся </a></li>
-                        </ul>
+﻿@model PatientViewModel
+<div class="row my-2">
+    <div class="col-lg-8 order-lg-2">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Профиль</a>
+            </li>
+            <li class="nav-item">
+                <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Информация</a>
+            </li>
+        </ul>
+        <div class="tab-content py-4">
+            <div class="tab-pane active" id="profile">
+                <h5 class="mb-3">@Model.LastName @Model.FirstName @Model.MiddleName, @Model.Age лет</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Обо мне</h6>
+                        <p>
+                            @if (Model.About != null)
+                                @Model.About
+                        </p>
+                        <h6>Хобби</h6>
+                        <p>
+                            @if (Model.Hobbies != null)
+                                @Model.Hobbies
+                        </p>
+                    </div>
+                    <div class="col-md-12">
+                        <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span>Недавние обследования</h5>
+                        <table class="table table-sm table-hover table-striped">
+                            <tbody>
+                                @if (ViewBag.Results != null)
+                                    @foreach (var active in ViewBag.Active)
+                                    {
+                                        <tr>
+                                            <td>@active.Type</td>
+                                            <td>@active.Date</td>
+                                        </tr>
+                                    }
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
+            <div class="tab-pane" id="edit">
+                <form method="post" asp-controller="Patient" asp-action="UpdateModel" asp-route-id="@Model.Id">
+                    <div class="form-group row">
+                        <label asp-for="LastName" class="col-lg-3 col-form-label form-control-label">Фамилия</label>
+                        <div class="col-lg-9">
+                            <input asp-for="LastName" class="form-control" type="text" value="@Model.LastName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="FirstName" class="col-lg-3 col-form-label form-control-label">Имя</label>
+                        <div class="col-lg-9">
+                            <input asp-for="FirstName" class="form-control" type="text" value="@Model.FirstName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="MiddleName" class="col-lg-3 col-form-label form-control-label">Отчество</label>
+                        <div class="col-lg-9">
+                            <input asp-for="MiddleName" class="form-control" type="text" value="@Model.MiddleName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Age" class="col-lg-3 col-form-label form-control-label">Возраст</label>
+                        <div class="col-lg-9">
+                            <input asp-for="Age" class="form-control" value="@Model.Age">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="About" class="col-lg-3 col-form-label form-control-label">Обо мне</label>
+                        <div class="col-lg-9">
+                            <input asp-for="About" class="form-control" type="text" value="@Model.About">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Hobbies" class="col-lg-3 col-form-label form-control-label">Хобби</label>
+                        <div class="col-lg-9">
+                            <input asp-for="Hobbies" class="form-control" type="text" value="@Model.Hobbies">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label"></label>
+                        <div class="col-lg-9">
+                            @if (User.IsInRole("admin"))
+                            {
+                                <button type="submit" class="btn btn-primary">Изменить</button>
+                            }
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
+    <div class="col-lg-4 order-lg-1 text-center">
+        <img src="~/picture/icons/256x256/256_15.png" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+    </div>
 </div>
-</div>
-
 

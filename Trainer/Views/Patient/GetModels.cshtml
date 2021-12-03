@@ -30,7 +30,7 @@
         @if (Model != null)
             @foreach (var user in Model)
             {
-                <tr>
+                <tr onclick="window.location.href='/Patient/GetModel?id=@user.Id';">
                     <td>@user.LastName</td>
                     <td>@user.FirstName</td>
                     <td>@user.MiddleName</td>

@@ -46,5 +46,16 @@ namespace Trainer.DAL.Entities
             get;
             set;
         }
+
+        public string About
+        {
+            get;
+            set;
+        }
+        public string Hobbies
+        {
+            get;
+            set;
+        }
     }
 }

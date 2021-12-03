@@ -40,7 +40,7 @@ namespace Trainer.Controllers
             return View(peoples);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
         [Authorize(Roles = "admin,doctor")]
         public async Task<IActionResult> GetModel(Guid id)
         {

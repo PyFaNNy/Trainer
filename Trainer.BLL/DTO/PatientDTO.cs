@@ -39,5 +39,16 @@ namespace Trainer.BLL.DTO
             get;
             set;
         }
+
+        public string About
+        {
+            get;
+            set;
+        }
+        public string Hobbies
+        {
+            get;
+            set;
+        }
     }
 }

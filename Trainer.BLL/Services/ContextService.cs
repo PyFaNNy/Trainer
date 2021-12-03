@@ -103,6 +103,8 @@ namespace Trainer.BLL.Services
             people.LastName = peopleDto.LastName;
             people.MiddleName = peopleDto.MiddleName;
             people.Sex = peopleDto.Sex;
+            people.About = peopleDto.About;
+            people.Hobbies = peopleDto.Hobbies;
 
             var returnPeople = _mapper.Map<PatientDTO>(await _database.Patients.Update(people));
 
