@@ -48,11 +48,10 @@
                                             <td>@active.AverageDia</td>
                                             <td>@active.AverageSis</td>
                                             <td>@active.AverageOxigen</td>
-                                            <td>@Math.Round(active.AverageTemperature,2)</td>
+                                            <td>@Math.Round(active.AverageTemperature, 2)</td>
                                             <td>@active.AverageHeartRate</td>
                                         </tr>
                                     }
-
                                 </tbody>
                             </table>
                         }
@@ -64,37 +63,79 @@
                     <div class="form-group row">
                         <label asp-for="LastName" class="col-lg-3 col-form-label form-control-label">Фамилия</label>
                         <div class="col-lg-9">
-                            <input asp-for="LastName" class="form-control" type="text" value="@Model.LastName">
+                            @if (User.IsInRole("admin"))
+                            {
+                                <input asp-for="LastName" class="form-control" type="text" value="@Model.LastName">
+                            }
+                            else
+                            {
+                                <input asp-for="LastName" class="form-control" type="text" value="@Model.LastName" readonly>
+                            }
                         </div>
                     </div>
                     <div class="form-group row">
                         <label asp-for="FirstName" class="col-lg-3 col-form-label form-control-label">Имя</label>
                         <div class="col-lg-9">
-                            <input asp-for="FirstName" class="form-control" type="text" value="@Model.FirstName">
+                            @if (User.IsInRole("admin"))
+                            {
+                                <input asp-for="FirstName" class="form-control" type="text" value="@Model.FirstName">
+                            }
+                            else
+                            {
+                                <input asp-for="FirstName" class="form-control" type="text" value="@Model.FirstName" readonly>
+                            }
                         </div>
                     </div>
                     <div class="form-group row">
                         <label asp-for="MiddleName" class="col-lg-3 col-form-label form-control-label">Отчество</label>
                         <div class="col-lg-9">
-                            <input asp-for="MiddleName" class="form-control" type="text" value="@Model.MiddleName">
+                            @if (User.IsInRole("admin"))
+                            {
+                                <input asp-for="MiddleName" class="form-control" type="text" value="@Model.MiddleName">
+                            }
+                            else
+                            {
+                                <input asp-for="MiddleName" class="form-control" type="text" value="@Model.MiddleName" readonly>
+                            }
                         </div>
                     </div>
                     <div class="form-group row">
                         <label asp-for="Age" class="col-lg-3 col-form-label form-control-label">Возраст</label>
                         <div class="col-lg-9">
-                            <input asp-for="Age" class="form-control" value="@Model.Age">
+                            @if (User.IsInRole("admin"))
+                            {
+                                <input asp-for="Age" class="form-control" value="@Model.Age">
+                            }
+                            else
+                            {
+                                <input asp-for="Age" class="form-control" value="@Model.Age" readonly>
+                            }
                         </div>
                     </div>
                     <div class="form-group row">
                         <label asp-for="About" class="col-lg-3 col-form-label form-control-label">Обо мне</label>
                         <div class="col-lg-9">
-                            <input asp-for="About" class="form-control" type="text" value="@Model.About">
+                            @if (User.IsInRole("admin"))
+                            {
+                                <input asp-for="About" class="form-control" type="text" value="@Model.About">
+                            }
+                            else
+                            {
+                                <input asp-for="About" class="form-control" type="text" value="@Model.About" readonly>
+                            }
                         </div>
                     </div>
                     <div class="form-group row">
                         <label asp-for="Hobbies" class="col-lg-3 col-form-label form-control-label">Хобби</label>
                         <div class="col-lg-9">
-                            <input asp-for="Hobbies" class="form-control" type="text" value="@Model.Hobbies">
+                            @if (User.IsInRole("admin"))
+                            {
+                                <input asp-for="Hobbies" class="form-control" type="text" value="@Model.Hobbies">
+                            }
+                            else
+                            {
+                                <input asp-for="Hobbies" class="form-control" type="text" value="@Model.Hobbies" readonly>
+                            }
                         </div>
                     </div>
                     <div class="form-group row">
