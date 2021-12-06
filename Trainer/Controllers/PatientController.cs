@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using Trainer.BLL.DTO;
 using Trainer.BLL.Infrastructure;
@@ -35,9 +37,9 @@ namespace Trainer.Controllers
             ViewData["MiddleNameSort"] = sortOrder == SortState.MiddleNameSort ? SortState.MiddleNameSortDesc : SortState.MiddleNameSort;
             ViewData["AgeSort"] = sortOrder == SortState.AgeSort ? SortState.AgeSortDesc : SortState.AgeSort;
             ViewData["SexSort"] = sortOrder == SortState.SexSort ? SortState.SexSortDesc : SortState.SexSort;
-            IEnumerable<PatientDTO> peopleDtos = await _contextService.GetPatients(sortOrder);
-            var peoples = _mapper.Map<List<PatientViewModel>>(peopleDtos);
-            return View(peoples);
+            IEnumerable<PatientDTO> patientsDTO = await _contextService.GetPatients(sortOrder);
+            var patients = _mapper.Map<List<PatientViewModel>>(patientsDTO);
+            return View(patients);
         }
 
         [HttpGet]
@@ -46,24 +48,24 @@ namespace Trainer.Controllers
         {
             try
             {
-                PatientDTO peopleDTO = await _contextService.GetPatient(id);
+                PatientDTO patientDTO = await _contextService.GetPatient(id);
                 ViewBag.Results = await _contextService.GetPatientResults(id);
-                var peopleView = _mapper.Map<PatientViewModel>(peopleDTO);
-                return View(peopleView);
+                var patientView = _mapper.Map<PatientViewModel>(patientDTO);
+                return View(patientView);
             }
             catch (RecordNotFoundException ex)
             {
                 return NotFound(ex.Message);
             }
         }
-        
+
         [HttpGet]
         [Authorize(Roles = "admin")]
         public IActionResult AddModel()
         {
             return View();
         }
-        
+
         [HttpPost]
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> AddModel(PatientViewModel model)
@@ -85,10 +87,17 @@ namespace Trainer.Controllers
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> UpdateModel(Guid id)
         {
-            PatientDTO patientDTO = await _contextService.GetPatient(id);
-            var patientView = _mapper.Map<PatientViewModel>(patientDTO);
-            ViewBag.Patient = patientView;
-            return View();
+            try
+            {
+                PatientDTO patientDTO = await _contextService.GetPatient(id);
+                var patientView = _mapper.Map<PatientViewModel>(patientDTO);
+                ViewBag.Patient = patientView;
+                return View();
+            }
+            catch (RecordNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         [HttpPost]
@@ -107,7 +116,7 @@ namespace Trainer.Controllers
                 return NotFound(ex.Message);
             }
         }
- 
+
         [Authorize(Roles = "admin")]
         public async Task<RedirectToActionResult> DeleteModelAsync(Guid[] selectedPatient)
         {
@@ -116,6 +125,29 @@ namespace Trainer.Controllers
                 await _contextService.DeletePatient(patient);
             }
             return RedirectToAction("GetModels");
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> ExportToCSV()
+        {
+            try
+            {
+                var builder = new StringBuilder();
+                builder.Append("Id;Last Name;First Name;Middle Name;Sex;Age;\n");
+                IEnumerable<PatientDTO> patientsDTO = await _contextService.GetPatients(SortState.LastNameSort);
+                var patients = _mapper.Map<List<PatientViewModel>>(patientsDTO);
+                foreach (var patient in patients)
+                {
+                    builder.AppendLine($"{patient.Id};{patient.LastName};{patient.FirstName};{patient.MiddleName};{patient.Sex};{patient.Age}\n");
+                }
+                return File(Encoding.Unicode.GetBytes(builder.ToString()), "text/csv", fileDownloadName: "Patients.csv");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }
