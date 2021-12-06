@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using Trainer.BLL.DTO;
 using Trainer.BLL.Infrastructure;
@@ -16,7 +17,7 @@ using Trainer.Util;
 
 namespace Trainer.Controllers
 {
-    [Authorize(Roles = "doctor")]
+
     public class ExaminationController : Controller
     {
         private readonly IContextService _contextService;
@@ -32,6 +33,7 @@ namespace Trainer.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin,doctor")]
         public async Task<IActionResult> GetModels(SortState sortOrder = SortState.FirstNameSort)
         {
             ViewData["DateSort"] = sortOrder == SortState.DateSort ? SortState.DateSortDesc : SortState.DateSort;
@@ -46,6 +48,7 @@ namespace Trainer.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin,doctor")]
         public async Task<IActionResult> GetModel(Guid id)
         {
             try
@@ -63,6 +66,7 @@ namespace Trainer.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "doctor")]
         public async Task<IActionResult> AddModel(Guid id)
         {
             ViewBag.UserId = id;
@@ -70,6 +74,7 @@ namespace Trainer.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "doctor")]
         public async Task<IActionResult> AddModel(ExaminationViewModel model, Guid patientid)
         {
             try
@@ -87,6 +92,7 @@ namespace Trainer.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "doctor")]
         public async Task<IActionResult> UpdateModel(Guid id)
         {
             ExaminationDTO examinationDTO = await _contextService.GetExamination(id);
@@ -97,6 +103,7 @@ namespace Trainer.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "doctor")]
         public async Task<IActionResult> UpdateModel(ExaminationViewModel model, Guid patientid)
         {
             try
@@ -114,6 +121,7 @@ namespace Trainer.Controllers
             }
         }
 
+        [Authorize(Roles = "doctor")]
         public async Task<RedirectToActionResult> DeleteModel(Guid[] selectedExamination)
         {
             foreach (var patient in selectedExamination)
@@ -121,6 +129,31 @@ namespace Trainer.Controllers
                 await _contextService.DeleteExamination(patient);
             }
             return RedirectToAction("GetModels");
+        }
+
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> ExportToCSV()
+        {
+            try
+            {
+                var builder = new StringBuilder();
+                builder.Append("Id;Type Physical Active;Last Name;First Name;Middle Name;Age;Tonometr;Termometr;Heart Rate;Oximetr;Date\n");
+                IEnumerable<ExaminationDTO> patientsDTO = await _contextService.GetExaminations(SortState.FirstNameSort);
+                var examinations = _mapper.Map<List<ExaminationViewModel>>(patientsDTO);
+                foreach (var examination in examinations)
+                {
+                    InvCountIndicators(examination);
+                    builder.AppendLine($"{examination.Id};{examination.TypePhysicalActive};{examination.Patient.LastName};" +
+                        $"{examination.Patient.FirstName};{examination.Patient.MiddleName};{examination.Patient.Age};" +
+                        $"{examination.Indicator1};{examination.Indicator2};{examination.Indicator3};{examination.Indicator4};{examination.Date}\n");
+                }
+                return File(Encoding.Unicode.GetBytes(builder.ToString()), "text/csv", fileDownloadName: "Examinations.csv");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         private void CountIndicators(ExaminationViewModel model)
@@ -147,6 +180,7 @@ namespace Trainer.Controllers
                 model.Indicators += 16;
             }
         }
+
         private void InvCountIndicators(ExaminationViewModel model)
         {
             var temp = model.Indicators;
