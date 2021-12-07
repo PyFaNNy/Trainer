@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QK1wihgLotxCmJCkeXbqzuCE20oYAJQuBlVY7Y6QLijwm4KqjQSDUMoYp/Ex51QJwPcbSoOie8ePBppYyOa/SQ==",
+  "dgSpecHash": "oTWo096inEW4fTF8fWCeBccDlHRLoIzUsFC+Ckl9qn64JPMdvD9/U1MOWz9ds42nOvmoeoXdYJ/hCF2CLyagog==",
   "success": true,
-  "projectFilePath": "D:\\Programming\\C#\\Лабораторные\\Trainer.BLL\\Trainer.BLL.csproj",
+  "projectFilePath": "D:\\Programming\\C#\\Trainer\\Trainer.BLL\\Trainer.BLL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Artyom\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Artyom\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.0\\microsoft.aspnetcore.cryptography.internal.5.0.0.nupkg.sha512",

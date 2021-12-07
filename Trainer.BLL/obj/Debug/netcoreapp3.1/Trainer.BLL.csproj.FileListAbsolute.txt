@@ -11,3 +11,16 @@ D:\Programming\C#\Лабораторные\Trainer.BLL\obj\Debug\netcoreapp3.1\T
 D:\Programming\C#\Лабораторные\Trainer.BLL\obj\Debug\netcoreapp3.1\Trainer.BLL.csproj.CopyComplete
 D:\Programming\C#\Лабораторные\Trainer.BLL\obj\Debug\netcoreapp3.1\Trainer.BLL.dll
 D:\Programming\C#\Лабораторные\Trainer.BLL\obj\Debug\netcoreapp3.1\Trainer.BLL.pdb
+D:\Programming\C#\Trainer\Trainer.BLL\bin\Debug\netcoreapp3.1\Trainer.BLL.deps.json
+D:\Programming\C#\Trainer\Trainer.BLL\bin\Debug\netcoreapp3.1\Trainer.BLL.dll
+D:\Programming\C#\Trainer\Trainer.BLL\bin\Debug\netcoreapp3.1\Trainer.BLL.pdb
+D:\Programming\C#\Trainer\Trainer.BLL\bin\Debug\netcoreapp3.1\Trainer.DAL.dll
+D:\Programming\C#\Trainer\Trainer.BLL\bin\Debug\netcoreapp3.1\Trainer.DAL.pdb
+D:\Programming\C#\Trainer\Trainer.BLL\obj\Debug\netcoreapp3.1\Trainer.BLL.csproj.AssemblyReference.cache
+D:\Programming\C#\Trainer\Trainer.BLL\obj\Debug\netcoreapp3.1\Trainer.BLL.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programming\C#\Trainer\Trainer.BLL\obj\Debug\netcoreapp3.1\Trainer.BLL.AssemblyInfoInputs.cache
+D:\Programming\C#\Trainer\Trainer.BLL\obj\Debug\netcoreapp3.1\Trainer.BLL.AssemblyInfo.cs
+D:\Programming\C#\Trainer\Trainer.BLL\obj\Debug\netcoreapp3.1\Trainer.BLL.csproj.CoreCompileInputs.cache
+D:\Programming\C#\Trainer\Trainer.BLL\obj\Debug\netcoreapp3.1\Trainer.BLL.csproj.CopyComplete
+D:\Programming\C#\Trainer\Trainer.BLL\obj\Debug\netcoreapp3.1\Trainer.BLL.dll
+D:\Programming\C#\Trainer\Trainer.BLL\obj\Debug\netcoreapp3.1\Trainer.BLL.pdb

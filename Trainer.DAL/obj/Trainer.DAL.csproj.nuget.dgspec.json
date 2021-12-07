@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Programming\\C#\\Лабораторные\\Trainer.DAL\\Trainer.DAL.csproj": {}
+    "D:\\Programming\\C#\\Trainer\\Trainer.DAL\\Trainer.DAL.csproj": {}
   },
   "projects": {
-    "D:\\Programming\\C#\\Лабораторные\\Trainer.DAL\\Trainer.DAL.csproj": {
+    "D:\\Programming\\C#\\Trainer\\Trainer.DAL\\Trainer.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Programming\\C#\\Лабораторные\\Trainer.DAL\\Trainer.DAL.csproj",
+        "projectUniqueName": "D:\\Programming\\C#\\Trainer\\Trainer.DAL\\Trainer.DAL.csproj",
         "projectName": "Trainer.DAL",
-        "projectPath": "D:\\Programming\\C#\\Лабораторные\\Trainer.DAL\\Trainer.DAL.csproj",
+        "projectPath": "D:\\Programming\\C#\\Trainer\\Trainer.DAL\\Trainer.DAL.csproj",
         "packagesPath": "C:\\Users\\Artyom\\.nuget\\packages\\",
-        "outputPath": "D:\\Programming\\C#\\Лабораторные\\Trainer.DAL\\obj\\",
+        "outputPath": "D:\\Programming\\C#\\Trainer\\Trainer.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Artyom\\AppData\\Roaming\\NuGet\\NuGet.Config",

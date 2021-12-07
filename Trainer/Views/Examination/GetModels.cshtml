@@ -6,6 +6,7 @@
     @if (User.IsInRole("doctor"))
     {
         <button type="submit" class="btn btn-primary m-1" asp-controller="Examination" asp-action="DeleteModel">Удалить</button>
+        <a class="btn btn-primary m-1" asp-controller="Examination" asp-action="ExportToPDF">Экспортировать в PDF</a>
     }
     @if (User.IsInRole("admin"))
     {

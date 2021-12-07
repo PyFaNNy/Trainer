@@ -5925,11 +5925,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Programming\\C#\\Лабораторные\\Trainer.BLL\\Trainer.BLL.csproj",
+      "projectUniqueName": "D:\\Programming\\C#\\Trainer\\Trainer.BLL\\Trainer.BLL.csproj",
       "projectName": "Trainer.BLL",
-      "projectPath": "D:\\Programming\\C#\\Лабораторные\\Trainer.BLL\\Trainer.BLL.csproj",
+      "projectPath": "D:\\Programming\\C#\\Trainer\\Trainer.BLL\\Trainer.BLL.csproj",
       "packagesPath": "C:\\Users\\Artyom\\.nuget\\packages\\",
-      "outputPath": "D:\\Programming\\C#\\Лабораторные\\Trainer.BLL\\obj\\",
+      "outputPath": "D:\\Programming\\C#\\Trainer\\Trainer.BLL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Artyom\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5946,8 +5946,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\Programming\\C#\\Лабораторные\\Trainer.DAL\\Trainer.DAL.csproj": {
-              "projectPath": "D:\\Programming\\C#\\Лабораторные\\Trainer.DAL\\Trainer.DAL.csproj"
+            "D:\\Programming\\C#\\Trainer\\Trainer.DAL\\Trainer.DAL.csproj": {
+              "projectPath": "D:\\Programming\\C#\\Trainer\\Trainer.DAL\\Trainer.DAL.csproj"
             }
           }
         }

@@ -3,8 +3,12 @@ using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.Hosting;
+using Syncfusion.HtmlConverter;
+using Syncfusion.Pdf;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Trainer.BLL.DTO;
@@ -24,12 +28,14 @@ namespace Trainer.Controllers
         private readonly IMapper _mapper;
         private readonly ExaminationValidator _validator;
         private readonly IHubContext<ChartHub> _chartHub;
-        public ExaminationController(IContextService serv, ExaminationValidator validator, IMapper mapper, IHubContext<ChartHub> chartHub)
+        private readonly IHostingEnvironment _hostingEnvironment;
+        public ExaminationController(IContextService serv, ExaminationValidator validator, IMapper mapper, IHubContext<ChartHub> chartHub, IHostingEnvironment hostingEnvironment)
         {
             _contextService = serv ?? throw new ArgumentNullException($"{nameof(serv)} is null.");
             _validator = validator ?? throw new ArgumentNullException($"{nameof(validator)} is null.");
             _mapper = mapper ?? throw new ArgumentNullException($"{nameof(mapper)} is null.");
             _chartHub = chartHub ?? throw new ArgumentNullException($"{nameof(chartHub)} is null.");
+            _hostingEnvironment = hostingEnvironment ?? throw new ArgumentNullException($"{nameof(hostingEnvironment)} is null.");
         }
 
         [HttpGet]
@@ -154,6 +160,23 @@ namespace Trainer.Controllers
 
                 throw;
             }
+        }
+
+        [Authorize(Roles = "doctor")]
+        public IActionResult ExportToPDF()
+        {
+            //Initialize HTML to PDF converter 
+            HtmlToPdfConverter htmlConverter = new HtmlToPdfConverter();
+            WebKitConverterSettings settings = new WebKitConverterSettings();
+            //Set WebKit path
+            settings.WebKitPath = Path.Combine(_hostingEnvironment.ContentRootPath, "QtBinariesWindows");
+            //Assign WebKit settings to HTML converter
+            htmlConverter.ConverterSettings = settings;
+            //Convert URL to PDF
+            PdfDocument document = htmlConverter.Convert("https://www.google.com");
+            MemoryStream stream = new MemoryStream();
+            document.Save(stream);
+            return File(stream.ToArray(), System.Net.Mime.MediaTypeNames.Application.Pdf, "Output.pdf");
         }
 
         private void CountIndicators(ExaminationViewModel model)

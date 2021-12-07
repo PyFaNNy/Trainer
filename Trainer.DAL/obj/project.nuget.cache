@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MG3XeMZXViP7Tw3Ns5DNl2/ZBAGsHh6SGH88QNpJ6s3Mda4uGBYvs+E5Biaw7WYNYQlx2tXZyR3rUUt0+Jn51A==",
+  "dgSpecHash": "NFRuZ13YSLvX5sw2x4KVbIrpEGLgxDLfHLzlRO+c4y9v15p34nZdFnmujpBi3ltHNMIfOw8l2Qp4JxmS3noqhw==",
   "success": true,
-  "projectFilePath": "D:\\Programming\\C#\\Лабораторные\\Trainer.DAL\\Trainer.DAL.csproj",
+  "projectFilePath": "D:\\Programming\\C#\\Trainer\\Trainer.DAL\\Trainer.DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Artyom\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.0\\microsoft.aspnetcore.cryptography.internal.5.0.0.nupkg.sha512",
     "C:\\Users\\Artyom\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.0\\microsoft.aspnetcore.cryptography.keyderivation.5.0.0.nupkg.sha512",
