@@ -441,10 +441,6 @@
         connection.invoke("TestTermometr");
     });
 
-    connection.on('RedirectHome', data => {
-        window.location.href = `/Examination/GetModels`
-    });
-
     document.getElementById("testHeartrate").addEventListener("click", function (e) {
         connection.invoke("TestHeartrate");
     });

@@ -58,6 +58,7 @@ namespace Trainer.DAL.Entities
             get;
             set;
         }
+
         public string Hobbies
         {
             get;

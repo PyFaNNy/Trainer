@@ -52,12 +52,6 @@
             get;
             set;
         }
-
-        public bool Indicator5
-        {
-            get;
-            set;
-        }
         
         public int Indicators
         {

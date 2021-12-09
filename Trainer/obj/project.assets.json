@@ -43,18 +43,6 @@
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
-      "CsvHelper/27.2.1": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.CSharp": "4.3.0"
-        },
-        "compile": {
-          "lib/netstandard2.1/CsvHelper.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.1/CsvHelper.dll": {}
-        }
-      },
       "FluentValidation/10.3.4": {
         "type": "package",
         "compile": {
@@ -286,6 +274,19 @@
         },
         "runtime": {
           "lib/netstandard2.1/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Mvc.Abstractions/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Routing.Abstractions": "2.2.0",
+          "Microsoft.Net.Http.Headers": "2.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Abstractions.dll": {}
         }
       },
       "Microsoft.AspNetCore.Razor/2.2.0": {
@@ -1134,6 +1135,13 @@
           "lib/netstandard1.0/_._": {}
         }
       },
+      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.11.1": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props": {},
+          "build/Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets": {}
+        }
+      },
       "Microsoft.VisualStudio.Web.CodeGeneration/3.1.5": {
         "type": "package",
         "dependencies": {
@@ -1531,19 +1539,6 @@
             "assetType": "native",
             "rid": "ubuntu.16.10-x64"
           }
-        }
-      },
-      "Syncfusion.HtmlToPdfConverter.QtWebKit.Net.Core/19.3.0.57": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/Syncfusion.Compression.Portable.dll": {},
-          "lib/netstandard2.0/Syncfusion.HtmlConverter.Portable.dll": {},
-          "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Syncfusion.Compression.Portable.dll": {},
-          "lib/netstandard2.0/Syncfusion.HtmlConverter.Portable.dll": {},
-          "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll": {}
         }
       },
       "System.AppContext/4.3.0": {
@@ -3087,6 +3082,7 @@
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "AutoMapper": "10.1.1",
+          "Microsoft.AspNetCore.Mvc.Abstractions": "2.2.0",
           "Trainer.DAL": "1.0.0"
         },
         "compile": {
@@ -3154,30 +3150,6 @@
         "automapper.extensions.microsoft.dependencyinjection.nuspec",
         "icon.png",
         "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll"
-      ]
-    },
-    "CsvHelper/27.2.1": {
-      "sha512": "uS5ix5hL9gL5taiAG//CScyJa8Fn1ZOh3FDhDvf4laboESFs84mCNropfp7PIt8xCkyQofljFpqu1B5UnSXjyA==",
-      "type": "package",
-      "path": "csvhelper/27.2.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "csvhelper.27.2.1.nupkg.sha512",
-        "csvhelper.nuspec",
-        "lib/net45/CsvHelper.dll",
-        "lib/net45/CsvHelper.xml",
-        "lib/net47/CsvHelper.dll",
-        "lib/net47/CsvHelper.xml",
-        "lib/net5.0/CsvHelper.dll",
-        "lib/net5.0/CsvHelper.xml",
-        "lib/net6.0/CsvHelper.dll",
-        "lib/net6.0/CsvHelper.xml",
-        "lib/netstandard2.0/CsvHelper.dll",
-        "lib/netstandard2.0/CsvHelper.xml",
-        "lib/netstandard2.1/CsvHelper.dll",
-        "lib/netstandard2.1/CsvHelper.xml"
       ]
     },
     "FluentValidation/10.3.4": {
@@ -3438,6 +3410,19 @@
         "lib/netstandard2.1/Microsoft.AspNetCore.Identity.EntityFrameworkCore.xml",
         "microsoft.aspnetcore.identity.entityframeworkcore.5.0.0.nupkg.sha512",
         "microsoft.aspnetcore.identity.entityframeworkcore.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Mvc.Abstractions/2.2.0": {
+      "sha512": "ET6uZpfVbGR1NjCuLaLy197cQ3qZUjzl7EG5SL4GfJH/c9KRE89MMBrQegqWsh0w1iRUB/zQaK0anAjxa/pz4g==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.mvc.abstractions/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Abstractions.xml",
+        "microsoft.aspnetcore.mvc.abstractions.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.mvc.abstractions.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Razor/2.2.0": {
@@ -4500,6 +4485,85 @@
         "runtime.json"
       ]
     },
+    "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.11.1": {
+      "sha512": "1jHxWlSi6/ryWODk6SUjsZPHk/BdsucxqhIi1szEzwc84e8nvZWF45qRXcT2gWPISJ3Ybbyg2LsNG6yX8r7VuA==",
+      "type": "package",
+      "path": "microsoft.visualstudio.azure.containers.tools.targets/1.11.1",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "EULA.md",
+        "ThirdPartyNotices.txt",
+        "build/Container.props",
+        "build/Container.targets",
+        "build/Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props",
+        "build/Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets",
+        "build/Rules/GeneralBrowseObject.xaml",
+        "build/Rules/cs-CZ/GeneralBrowseObject.xaml",
+        "build/Rules/de-DE/GeneralBrowseObject.xaml",
+        "build/Rules/es-ES/GeneralBrowseObject.xaml",
+        "build/Rules/fr-FR/GeneralBrowseObject.xaml",
+        "build/Rules/it-IT/GeneralBrowseObject.xaml",
+        "build/Rules/ja-JP/GeneralBrowseObject.xaml",
+        "build/Rules/ko-KR/GeneralBrowseObject.xaml",
+        "build/Rules/pl-PL/GeneralBrowseObject.xaml",
+        "build/Rules/pt-BR/GeneralBrowseObject.xaml",
+        "build/Rules/ru-RU/GeneralBrowseObject.xaml",
+        "build/Rules/tr-TR/GeneralBrowseObject.xaml",
+        "build/Rules/zh-CN/GeneralBrowseObject.xaml",
+        "build/Rules/zh-TW/GeneralBrowseObject.xaml",
+        "build/ToolsTarget.props",
+        "build/ToolsTarget.targets",
+        "icon.png",
+        "microsoft.visualstudio.azure.containers.tools.targets.1.11.1.nupkg.sha512",
+        "microsoft.visualstudio.azure.containers.tools.targets.nuspec",
+        "tools/Microsoft.VisualStudio.Containers.Tools.Common.dll",
+        "tools/Microsoft.VisualStudio.Containers.Tools.Shared.dll",
+        "tools/Microsoft.VisualStudio.Containers.Tools.Tasks.dll",
+        "tools/Newtonsoft.Json.dll",
+        "tools/cs/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/cs/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/cs/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/de/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/de/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/de/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/es/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/es/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/es/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/fr/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/fr/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/fr/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/it/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/it/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/it/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/ja/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/ja/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/ja/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/ko/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/ko/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/ko/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/pl/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/pl/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/pl/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/pt-BR/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/pt-BR/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/pt-BR/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/ru/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/ru/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/ru/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/tr/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/tr/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/tr/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/utils/KillProcess.exe",
+        "tools/zh-Hans/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/zh-Hans/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/zh-Hans/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/zh-Hant/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/zh-Hant/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/zh-Hant/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll"
+      ]
+    },
     "Microsoft.VisualStudio.Web.CodeGeneration/3.1.5": {
       "sha512": "KSXhD6QzyoyNc52blbf5DJ7QNtul1VXcpOcYO5svlbFRRWjcB3+lpYTr5n9I6fcgMDGkhb4mndLZuXSTz0ukaA==",
       "type": "package",
@@ -5306,144 +5370,6 @@
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.nuspec",
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
-      ]
-    },
-    "Syncfusion.HtmlToPdfConverter.QtWebKit.Net.Core/19.3.0.57": {
-      "sha512": "O/6jYNg4c1C/p1MIoUJ8/dJ94Jl5XnRPRZXggkBou/Xf/9421wFDPDJAyv7mNoqWUCdvF2koVspE7kaQP6FrKg==",
-      "type": "package",
-      "path": "syncfusion.htmltopdfconverter.qtwebkit.net.core/19.3.0.57",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE.txt",
-        "README.md",
-        "lib/QtBinariesLinux/Syncfusion.WebKitWrapper",
-        "lib/QtBinariesLinux/imageformats/libqdds.so",
-        "lib/QtBinariesLinux/imageformats/libqgif.so",
-        "lib/QtBinariesLinux/imageformats/libqicns.so",
-        "lib/QtBinariesLinux/imageformats/libqico.so",
-        "lib/QtBinariesLinux/imageformats/libqjp2.so",
-        "lib/QtBinariesLinux/imageformats/libqjpeg.so",
-        "lib/QtBinariesLinux/imageformats/libqmng.so",
-        "lib/QtBinariesLinux/imageformats/libqsvg.so",
-        "lib/QtBinariesLinux/imageformats/libqtga.so",
-        "lib/QtBinariesLinux/imageformats/libqtiff.so",
-        "lib/QtBinariesLinux/imageformats/libqwbmp.so",
-        "lib/QtBinariesLinux/imageformats/libqwebp.so",
-        "lib/QtBinariesLinux/libGL.so.1",
-        "lib/QtBinariesLinux/libQt5Core.so.5",
-        "lib/QtBinariesLinux/libQt5DBus.so.5",
-        "lib/QtBinariesLinux/libQt5Gui.so.5",
-        "lib/QtBinariesLinux/libQt5Multimedia.so.5",
-        "lib/QtBinariesLinux/libQt5MultimediaWidgets.so.5",
-        "lib/QtBinariesLinux/libQt5Network.so.5",
-        "lib/QtBinariesLinux/libQt5OpenGL.so.5",
-        "lib/QtBinariesLinux/libQt5Positioning.so.5",
-        "lib/QtBinariesLinux/libQt5PrintSupport.so.5",
-        "lib/QtBinariesLinux/libQt5Qml.so.5",
-        "lib/QtBinariesLinux/libQt5Quick.so.5",
-        "lib/QtBinariesLinux/libQt5Sensors.so.5",
-        "lib/QtBinariesLinux/libQt5Sql.so.5",
-        "lib/QtBinariesLinux/libQt5Svg.so.5",
-        "lib/QtBinariesLinux/libQt5WebChannel.so.5",
-        "lib/QtBinariesLinux/libQt5WebKit.so.5",
-        "lib/QtBinariesLinux/libQt5WebKitWidgets.so.5",
-        "lib/QtBinariesLinux/libQt5Widgets.so.5",
-        "lib/QtBinariesLinux/libQt5XcbQpa.so.5",
-        "lib/QtBinariesLinux/libicudata.so.55",
-        "lib/QtBinariesLinux/libicui18n.so.55",
-        "lib/QtBinariesLinux/libicuuc.so.55",
-        "lib/QtBinariesLinux/libjpeg.so.8",
-        "lib/QtBinariesLinux/libpng12.so.0",
-        "lib/QtBinariesLinux/libsqlite3.so.0",
-        "lib/QtBinariesLinux/libstdc++.so.6",
-        "lib/QtBinariesLinux/platforms/libqminimal.so",
-        "lib/QtBinariesLinux/platforms/libqoffscreen.so",
-        "lib/QtBinariesLinux/platforms/libqxcb.so",
-        "lib/QtBinariesMac/Syncfusion.WebKitWrapper",
-        "lib/QtBinariesMac/imageformats/libqdds.dylib",
-        "lib/QtBinariesMac/imageformats/libqgif.dylib",
-        "lib/QtBinariesMac/imageformats/libqicns.dylib",
-        "lib/QtBinariesMac/imageformats/libqico.dylib",
-        "lib/QtBinariesMac/imageformats/libqjp2.dylib",
-        "lib/QtBinariesMac/imageformats/libqjpeg.dylib",
-        "lib/QtBinariesMac/imageformats/libqmng.dylib",
-        "lib/QtBinariesMac/imageformats/libqsvg.dylib",
-        "lib/QtBinariesMac/imageformats/libqtga.dylib",
-        "lib/QtBinariesMac/imageformats/libqtiff.dylib",
-        "lib/QtBinariesMac/imageformats/libqwbmp.dylib",
-        "lib/QtBinariesMac/imageformats/libqwebp.dylib",
-        "lib/QtBinariesMac/libQt5Core.5.dylib",
-        "lib/QtBinariesMac/libQt5DBus.5.dylib",
-        "lib/QtBinariesMac/libQt5Gui.5.dylib",
-        "lib/QtBinariesMac/libQt5Multimedia.5.dylib",
-        "lib/QtBinariesMac/libQt5MultimediaWidgets.5.dylib",
-        "lib/QtBinariesMac/libQt5Network.5.dylib",
-        "lib/QtBinariesMac/libQt5OpenGL.5.dylib",
-        "lib/QtBinariesMac/libQt5Positioning.5.dylib",
-        "lib/QtBinariesMac/libQt5PrintSupport.5.dylib",
-        "lib/QtBinariesMac/libQt5Qml.5.dylib",
-        "lib/QtBinariesMac/libQt5Quick.5.dylib",
-        "lib/QtBinariesMac/libQt5Sensors.5.dylib",
-        "lib/QtBinariesMac/libQt5Sql.5.dylib",
-        "lib/QtBinariesMac/libQt5Svg.5.dylib",
-        "lib/QtBinariesMac/libQt5WebChannel.5.dylib",
-        "lib/QtBinariesMac/libQt5WebKit.5.dylib",
-        "lib/QtBinariesMac/libQt5WebKitWidgets.5.dylib",
-        "lib/QtBinariesMac/libQt5Widgets.5.dylib",
-        "lib/QtBinariesMac/libcrypto.1.0.0.dylib",
-        "lib/QtBinariesMac/libssl.1.0.0.dylib",
-        "lib/QtBinariesMac/platforms/libqcocoa.dylib",
-        "lib/QtBinariesMac/platforms/libqminimal.dylib",
-        "lib/QtBinariesMac/platforms/libqoffscreen.dylib",
-        "lib/QtBinariesWindows/Qt5Core.dll",
-        "lib/QtBinariesWindows/Qt5Gui.dll",
-        "lib/QtBinariesWindows/Qt5Multimedia.dll",
-        "lib/QtBinariesWindows/Qt5MultimediaWidgets.dll",
-        "lib/QtBinariesWindows/Qt5Network.dll",
-        "lib/QtBinariesWindows/Qt5OpenGL.dll",
-        "lib/QtBinariesWindows/Qt5Positioning.dll",
-        "lib/QtBinariesWindows/Qt5PrintSupport.dll",
-        "lib/QtBinariesWindows/Qt5Qml.dll",
-        "lib/QtBinariesWindows/Qt5Quick.dll",
-        "lib/QtBinariesWindows/Qt5Sensors.dll",
-        "lib/QtBinariesWindows/Qt5Sql.dll",
-        "lib/QtBinariesWindows/Qt5Svg.dll",
-        "lib/QtBinariesWindows/Qt5WebChannel.dll",
-        "lib/QtBinariesWindows/Qt5WebKit.dll",
-        "lib/QtBinariesWindows/Qt5WebKitWidgets.dll",
-        "lib/QtBinariesWindows/Qt5Widgets.dll",
-        "lib/QtBinariesWindows/Syncfusion.WebKitWrapper",
-        "lib/QtBinariesWindows/icudt49.dll",
-        "lib/QtBinariesWindows/icuin49.dll",
-        "lib/QtBinariesWindows/icuuc49.dll",
-        "lib/QtBinariesWindows/imageformats/qdds.dll",
-        "lib/QtBinariesWindows/imageformats/qgif.dll",
-        "lib/QtBinariesWindows/imageformats/qicns.dll",
-        "lib/QtBinariesWindows/imageformats/qico.dll",
-        "lib/QtBinariesWindows/imageformats/qjp2.dll",
-        "lib/QtBinariesWindows/imageformats/qjpeg.dll",
-        "lib/QtBinariesWindows/imageformats/qmng.dll",
-        "lib/QtBinariesWindows/imageformats/qsvg.dll",
-        "lib/QtBinariesWindows/imageformats/qtga.dll",
-        "lib/QtBinariesWindows/imageformats/qtiff.dll",
-        "lib/QtBinariesWindows/imageformats/qwbmp.dll",
-        "lib/QtBinariesWindows/imageformats/qwebp.dll",
-        "lib/QtBinariesWindows/libEGL.dll",
-        "lib/QtBinariesWindows/libGLESv2.dll",
-        "lib/QtBinariesWindows/platforms/qminimal.dll",
-        "lib/QtBinariesWindows/platforms/qoffscreen.dll",
-        "lib/QtBinariesWindows/platforms/qwindows.dll",
-        "lib/QtBinariesWindows/zlib1.dll",
-        "lib/netstandard2.0/Syncfusion.Compression.Portable.dll",
-        "lib/netstandard2.0/Syncfusion.Compression.Portable.xml",
-        "lib/netstandard2.0/Syncfusion.HtmlConverter.Portable.dll",
-        "lib/netstandard2.0/Syncfusion.HtmlConverter.Portable.xml",
-        "lib/netstandard2.0/Syncfusion.Pdf.Portable.dll",
-        "lib/netstandard2.0/Syncfusion.Pdf.Portable.xml",
-        "syncfusion.htmltopdfconverter.qtwebkit.net.core.19.3.0.57.nupkg.sha512",
-        "syncfusion.htmltopdfconverter.qtwebkit.net.core.nuspec",
-        "syncfusion_logo.png"
       ]
     },
     "System.AppContext/4.3.0": {
@@ -9860,13 +9786,12 @@
       "AutoMapper >= 10.1.1",
       "AutoMapper.Data >= 5.0.0",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 8.1.1",
-      "CsvHelper >= 27.2.1",
       "FluentValidation >= 10.3.4",
       "Microsoft.AspNetCore.SignalR >= 1.1.0",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.3",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.3",
+      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.11.1",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.5",
-      "Syncfusion.HtmlToPdfConverter.QtWebKit.Net.Core >= 19.3.0.57",
       "Trainer.BLL >= 1.0.0",
       "Trainer.DAL >= 1.0.0"
     ]
@@ -9929,10 +9854,6 @@
             "target": "Package",
             "version": "[8.1.1, )"
           },
-          "CsvHelper": {
-            "target": "Package",
-            "version": "[27.2.1, )"
-          },
           "FluentValidation": {
             "target": "Package",
             "version": "[10.3.4, )"
@@ -9953,13 +9874,13 @@
             "target": "Package",
             "version": "[5.0.3, )"
           },
+          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+            "target": "Package",
+            "version": "[1.11.1, )"
+          },
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[3.1.5, )"
-          },
-          "Syncfusion.HtmlToPdfConverter.QtWebKit.Net.Core": {
-            "target": "Package",
-            "version": "[19.3.0.57, )"
           }
         },
         "imports": [

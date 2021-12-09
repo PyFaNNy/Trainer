@@ -85,7 +85,7 @@ namespace Trainer.Chart
                         await this.Clients.Caller.SendAsync("newOximetr", time, sep);
                     }
                     time += 1;
-                    Thread.Sleep(100);
+                    Thread.Sleep(500);
                 }
 
                 examination.Status = DAL.Util.Constant.Status.Finished;
@@ -100,8 +100,6 @@ namespace Trainer.Chart
                     ExaminationId = examination.Id,
                     PatientId = examination.PatientId,
                 });
-                Thread.Sleep(1000);
-                await this.Clients.Caller.SendAsync("RedirectHome");
             }
         }
 

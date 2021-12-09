@@ -6,7 +6,6 @@
     @if (User.IsInRole("doctor"))
     {
         <button type="submit" class="btn btn-primary m-1" asp-controller="Examination" asp-action="DeleteModel">Удалить</button>
-        <a class="btn btn-primary m-1" asp-controller="Examination" asp-action="ExportToPDF">Экспортировать в PDF</a>
     }
     @if (User.IsInRole("admin"))
     {
@@ -54,17 +53,4 @@
     </table>
 </form>
 
-<script>
-    var f = document.getElementById('examinations');
-    f.cb_all.onchange = function (e) {
-        var el = e.target || e.srcElement;
-        var qwe = el.form.getElementsByClassName('examination');
-        for (var i = 0; i < qwe.length; i++) {
-            if (el.checked) {
-                qwe[i].checked = true;
-            } else {
-                qwe[i].checked = false;
-            }
-        }
-    }
-</script>
+<script src="~/js/Views/Examination/GetModels.js"></script>
