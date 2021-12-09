@@ -182,11 +182,6 @@ namespace Trainer.Chart
         private void CountIndicators(ExaminationViewModel model)
         {
             var temp = model.Indicators;
-            if (temp - 16 >= 0)
-            {
-                temp -= 16;
-                model.Indicator5 = true;
-            }
             if (temp - 8 >= 0)
             {
                 temp -= 8;

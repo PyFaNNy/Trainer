@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Globalization;
 using Trainer.BLL.Interfaces;
 using Trainer.BLL.Services;
 using Trainer.Chart;
@@ -47,9 +49,26 @@ namespace Trainer
             services.AddScoped<IUnitOfWork, EFUnitOfWork>();
             services.AddScoped<PatientValidator>();
             services.AddScoped<ExaminationValidator>();
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
 
-            services.AddControllersWithViews();
-            
+
+            services.AddMvc()
+                .AddDataAnnotationsLocalization()
+                .AddViewLocalization();
+
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[]
+                {
+                    new CultureInfo("en"),
+                    new CultureInfo("ru")
+                };
+
+                options.DefaultRequestCulture = new RequestCulture("en");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,6 +90,7 @@ namespace Trainer
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseRequestLocalization();
 
             app.UseEndpoints(endpoints =>
             {

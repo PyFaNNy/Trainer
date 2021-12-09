@@ -1,9 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Тренажёр</title>
+    <title>@ViewData["Title"] - @Localizer["Trainer"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link rel="stylesheet" href="~/css/site.css" />
@@ -26,14 +29,14 @@
                             </li>
                             <li class="nav-item">
                                 <form class="form-inline" asp-controller="Account" asp-action="Logout">
-                                    <button type="submit" class="nav-link btn btn-link text-light">Выйти</button>
+                                    <button type="submit" class="nav-link btn btn-link text-light">@Localizer["Logout"]</button>
                                 </form>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-controller="Account" asp-action="Login">Войти</a>
+                                <a class="nav-link text-light" asp-controller="Account" asp-action="Login">@Localizer["SingIn"]</a>
                             </li>
                         }
 
@@ -42,11 +45,11 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-controller="Patient" asp-action="GetModels">Пользователи</a>
+                                <a class="nav-link text-light" asp-controller="Patient" asp-action="GetModels">@Localizer["Patients"]</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-controller="Examination" asp-action="GetModels">Обследования</a>
+                                <a class="nav-link text-light" asp-controller="Examination" asp-action="GetModels">@Localizer["Examinations"]</a>
                             </li>
                         }
                     </ul>
@@ -62,7 +65,12 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - Тренажёр. Сделал Пузырёв Артём
+            <div class="row">
+                <div>
+                    &copy; 2021 - Тренажёр. Сделал Пузырёв Артём
+                </div>
+                    @await Html.PartialAsync("_SelectLanguagePartial")
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

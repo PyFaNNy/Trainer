@@ -1,24 +1,26 @@
-﻿@{
-    ViewData["Title"] = "Обследования";
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = @Localizer["Examination"];
 }
-<h4>Обследования</h4>
+<h4>@Localizer["Examination"]</h4>
 <form id='examinations' method="post">
     @if (User.IsInRole("doctor"))
     {
-        <button type="submit" class="btn btn-primary m-1" asp-controller="Examination" asp-action="DeleteModel">Удалить</button>
+        <button type="submit" class="btn btn-primary m-1" asp-controller="Examination" asp-action="DeleteModel">@Localizer["Delete"]</button>
     }
     @if (User.IsInRole("admin"))
     {
-        <a class="btn btn-primary m-1" asp-controller="Examination" asp-action="ExportToCSV">Экспортировать в CSV</a>
+        <a class="btn btn-primary m-1" asp-controller="Examination" asp-action="ExportToCSV">@Localizer["Export"]</a>
     }
 
     <table class="table table-striped table-hover">
         <tr>
-            <th><a asp-controller="Examination" asp-action="GetModels" asp-route-sortOrder="@ViewBag.TypeSort">Вид физической нагрузки</a></th>
-            <th><a asp-controller="Examination" asp-action="GetModels" asp-route-sortOrder="@ViewBag.LastNameSort">Фамилия</a></th>
-            <th><a asp-controller="Examination" asp-action="GetModels" asp-route-sortOrder="@ViewBag.FirstNameSort">Имя</a></th>
-            <th><a asp-controller="Examination" asp-action="GetModels" asp-route-sortOrder="@ViewBag.MiddleNameSort">Отчество</a></th>
-            <th><a asp-controller="Examination" asp-action="GetModels" asp-route-sortOrder="@ViewBag.DateSort">Дата обследования</a></th>
+            <th><a asp-controller="Examination" asp-action="GetModels" asp-route-sortOrder="@ViewBag.TypeSort">@Localizer["TypePhysicalActive"]</a></th>
+            <th><a asp-controller="Examination" asp-action="GetModels" asp-route-sortOrder="@ViewBag.LastNameSort">@Localizer["LastName"]</a></th>
+            <th><a asp-controller="Examination" asp-action="GetModels" asp-route-sortOrder="@ViewBag.FirstNameSort">@Localizer["FirstName"]</a></th>
+            <th><a asp-controller="Examination" asp-action="GetModels" asp-route-sortOrder="@ViewBag.MiddleNameSort">@Localizer["MiddleName"]</a></th>
+            <th><a asp-controller="Examination" asp-action="GetModels" asp-route-sortOrder="@ViewBag.DateSort">@Localizer["Date"]</a></th>
             @if (User.IsInRole("doctor"))
             {
                 <th></th>

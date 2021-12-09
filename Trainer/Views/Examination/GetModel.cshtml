@@ -1,9 +1,11 @@
-﻿@{
-    ViewData["Title"] = "Сеанс";
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = @Localizer["Seans"];
 }
 <div class="row mb-2">
     <div class="col">
-        <button type="button" id="start" class="btn btn-success btn-block">Начать сеанс</button>
+        <button type="button" id="start" class="btn btn-success btn-block">@Localizer["Start"]</button>
     </div>
     <div class="col-1">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-info"></i></button>
@@ -16,10 +18,10 @@
                 <div class="col-4">
                     <select id="2" class="form-control" style="opacity: 0.5;" onchange='findOption2(this)'>
                         <option value=0></option>
-                        <option value=1>Тонометр</option>
-                        <option value=2>Термометр</option>
-                        <option value=3>Пульсометр</option>
-                        <option value=4>Оксиметр</option>
+                        <option value=1>@Localizer["Tonometr"]</option>
+                        <option value=2>@Localizer["Termometr"]</option>
+                        <option value=3>@Localizer["HeartRate"]</option>
+                        <option value=4>@Localizer["Oximetr"]</option>
                     </select>
                 </div>
             </div>
@@ -27,20 +29,20 @@
                 <div class="col-4">
                     <select id="3" class="form-control" style="opacity: 0.5;" onchange='findOption3(this)'>
                         <option value=0></option>
-                        <option value=1>Тонометр</option>
-                        <option value=2>Термометр</option>
-                        <option value=3>Пульсометр</option>
-                        <option value=4>Оксиметр</option>
+                        <option value=1>@Localizer["Tonometr"]</option>
+                        <option value=2>@Localizer["Termometr"]</option>
+                        <option value=3>@Localizer["HeartRate"]</option>
+                        <option value=4>@Localizer["Oximetr"]</option>
                     </select>
                 </div>
                 <div class="col"></div>
                 <div class="col-4">
                     <select id="1" class="form-control" style="opacity: 0.5;" onchange='findOption1(this)'>
                         <option value=0></option>
-                        <option value=1>Тонометр</option>
-                        <option value=2>Термометр</option>
-                        <option value=3>Пульсометр</option>
-                        <option value=4>Оксиметр</option>
+                        <option value=1>@Localizer["Tonometr"]</option>
+                        <option value=2>@Localizer["Termometr"]</option>
+                        <option value=3>@Localizer["HeartRate"]</option>
+                        <option value=4>@Localizer["Oximetr"]</option>
                     </select>
                 </div>
             </div>
@@ -49,10 +51,10 @@
                 <div class="col-4">
                     <select id="4" class="form-control" style="opacity: 0.5;" onchange='findOption4(this)'>
                         <option value="0"></option>
-                        <option value="1">Тонометр</option>
-                        <option value="2">Термометр</option>
-                        <option value="3">Пульсометр</option>
-                        <option value="4">Оксиметр</option>
+                        <option value=1>@Localizer["Tonometr"]</option>
+                        <option value=2>@Localizer["Termometr"]</option>
+                        <option value=3>@Localizer["HeartRate"]</option>
+                        <option value=4>@Localizer["Oximetr"]</option>
                     </select>
                 </div>
             </div>
@@ -61,18 +63,18 @@
             <div class="row h-25">
                 <div class="col tonometr"></div>
                 <div class="col">
-                    <button type="button" id="testTonometr" class="btn btn-primary mt-1">Тестировать</button>
+                    <button type="button" id="testTonometr" class="btn btn-primary mt-1">@Localizer["Test"]</button>
 
                     <div class="form-check">
                         <input class="form-check-input" value="1" type="radio" name="tonometr" id="tonometrON" onclick="tonometrClick(this);">
                         <label class="form-check-label" for="tonometrON">
-                            Вкл
+                            @Localizer["On"]
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" value="0" type="radio" name="tonometr" id="tonometrOFF" onclick="tonometrClick(this);" checked>
                         <label class="form-check-label" for="tonometrOFF">
-                            Выкл
+                            @Localizer["Off"]
                         </label>
                     </div>
                 </div>
@@ -80,27 +82,27 @@
             <div class="row h-50 mb-5">
                 <div class="card">
                     <h4 class="card-header">
-                        Измерение давления
+                        @Localizer["MeasureDiaSis"]
                     </h4>
                     <div class="card-body">
-                        <canvas id="myChart" height="300" width="500">Chart is Loading...</canvas>
+                        <canvas id="myChart" height="300" width="500">@Localizer["ChartLoad"]</canvas>
                     </div>
                 </div>
             </div>
             <div class="row h-25">
                 <div class="col termometr"></div>
                 <div class="col">
-                    <button type="button" id="testTermometr" class="btn btn-primary mt-1">Тестировать</button>
+                    <button type="button" id="testTermometr" class="btn btn-primary mt-1">@Localizer["Test"]</button>
                     <div class="form-check">
                         <input class="form-check-input" value="1" type="radio" name="termometr" id="termometrON" onclick="termometrClick(this);">
                         <label class="form-check-label" for="termometrON">
-                            Вкл
+                            @Localizer["On"]
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" value="0" type="radio" name="termometr" id="termometrOFF" onclick="termometrClick(this);" checked>
                         <label class="form-check-label" for="termometrOFF">
-                            Выкл
+                            @Localizer["Off"]
                         </label>
                     </div>
                 </div>
@@ -108,27 +110,27 @@
             <div class="row h-50 mb-5">
                 <div class="card">
                     <h4 class="card-header">
-                        Измерение температуры
+                        @Localizer["MeasureTemp"]
                     </h4>
                     <div class="card-body">
-                        <canvas id="myChart1" width="500" height="300">Chart is Loading...</canvas>
+                        <canvas id="myChart1" width="500" height="300">@Localizer["ChartLoad"]</canvas>
                     </div>
                 </div>
             </div>
             <div class="row h-25">
                 <div class="col heartrate"></div>
                 <div class="col">
-                    <button type="button" id="testHeartrate" class="btn btn-primary mt-1">Тестировать</button>
+                    <button type="button" id="testHeartrate" class="btn btn-primary mt-1">@Localizer["Test"]</button>
                     <div class="form-check">
                         <input class="form-check-input" value="1" type="radio" name="heartrate" id="heartrateON" onclick="heartrateClick(this);">
                         <label class="form-check-label" for="heartrateON">
-                            Вкл
+                            @Localizer["On"]
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" value="0" type="radio" name="heartrate" id="heartrateOFF" onclick="heartrateClick(this);" checked>
                         <label class="form-check-label" for="heartrateOFF">
-                            Выкл
+                            @Localizer["Off"]
                         </label>
                     </div>
                 </div>
@@ -136,27 +138,27 @@
             <div class="row h-50 mb-5">
                 <div class="card">
                     <h4 class="card-header">
-                        Измерение пульса
+                        @Localizer["MeasureHeart"]
                     </h4>
                     <div class="card-body">
-                        <canvas id="myChart2" width="500" height="300">Chart is Loading...</canvas>
+                        <canvas id="myChart2" width="500" height="300">@Localizer["ChartLoad"]</canvas>
                     </div>
                 </div>
             </div>
             <div class="row h-25">
                 <div class="col oximetr"></div>
                 <div class="col">
-                    <button type="button" id="testOximetr" class="btn btn-primary mt-1">Тестировать</button>
+                    <button type="button" id="testOximetr" class="btn btn-primary mt-1">@Localizer["Test"]</button>
                     <div class="form-check">
                         <input class="form-check-input" value="1" type="radio" name="oximetr" id="oximetrON" onclick="oximetrClick(this);">
                         <label class="form-check-label" for="oximetrON">
-                            Вкл
+                            @Localizer["On"]
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" value="0" type="radio" name="oximetr" id="oximetrOFF" onclick="oximetrClick(this);" checked>
                         <label class="form-check-label" for="oximetrOFF">
-                            Выкл
+                            @Localizer["Off"]
                         </label>
                     </div>
                 </div>
@@ -164,10 +166,10 @@
             <div class="row h-50 mb-5">
                 <div class="card">
                     <h4 class="card-header">
-                        Измерение содержания кислорода в крови
+                        @Localizer["MeasureSpO2"]
                     </h4>
                     <div class="card-body">
-                        <canvas id="myChart3" width="500" height="300">Chart is Loading...</canvas>
+                        <canvas id="myChart3" width="500" height="300">@Localizer["ChartLoad"]</canvas>
                     </div>
                 </div>
             </div>
@@ -179,47 +181,47 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Информация о обследовании</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">@Localizer["Info"]</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <span>Пациент: @Model.Patient.LastName @Model.Patient.FirstName @Model.Patient.MiddleName</span>
+                    <span>@Localizer["Patient"]: @Model.Patient.LastName @Model.Patient.FirstName @Model.Patient.MiddleName</span>
                 </div>
                 <div class="row">
-                    <span>Возраст: @Model.Patient.Age</span>
+                    <span>@Localizer["Age"]: @Model.Patient.Age</span>
                 </div>
                 <div class="row">
-                    <span>Пол: @Model.Patient.Sex</span>
+                    <span>@Localizer["Sex"]: @Model.Patient.Sex</span>
                 </div>
                 <div class="row">
-                    <span>Дата обследования: @Model.Date</span>
+                    <span>@Localizer["Date"]: @Model.Date</span>
                 </div>
                 <div class="row">
-                    <span>Вид физической нагрузки: @Model.TypePhysicalActive</span>
+                    <span>@Localizer["TypePhysicalActive"]: @Model.TypePhysicalActive</span>
                 </div>
                 <div class="row">
-                    <span>Проводимые измерения:</span>
+                    <span>@Localizer["Measure"]:</span>
                 </div>
                 <ul>
                     @if (Model.Indicator1)
                     {
-                        <li>Давление</li>
+                        <li>@Localizer["DiaSis"]</li>
                     }
                     @if (Model.Indicator2)
                     {
-                        <li>Температура</li>
+                        <li>@Localizer["Temperature"]</li>
                     }
                     @if (Model.Indicator3)
                     {
-                        <li>Пульс</li>
+                        <li>@Localizer["HeartRating"]</li>
                     }
                     @if (Model.Indicator4)
                     {
-                        <li>Сепарация</li>
-                    } 
+                        <li>@Localizer["SpO2"]</li>
+                    }
                 </ul>
             </div>
             <div class="modal-footer">

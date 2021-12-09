@@ -1,24 +1,25 @@
-﻿@{
-    ViewData["Title"] = "Редактировать обследование";
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = @Localizer["UpdateExamination"];
 }
 @model ExaminationViewModel
-<h2>Редактировать обследование</h2>
+<h2>@Localizer["UpdateExamination"]</h2>
 <form method="post" enctype="multipart/form-data" asp-controller="Examination" asp-action="UpdateModel" asp-route-id="@ViewBag.Examination.Id">
     <div asp-validation-summary="ModelOnly"></div>
     <div class="col-md-4">
         <div class="form-group">
-            <label asp-for="TypePhysicalActive">Вид физической нагрузки</label><br />
+            <label asp-for="TypePhysicalActive">@Localizer["TypePhysicalActive"]</label><br />
             <select asp-for="TypePhysicalActive" class="form-control" id="select">
-                <option>Выберите вид нагрузки</option>
-                <option value="0">Бег</option>
-                <option value="1">Хотьба</option>
-                <option value="2">Велосипед</option>
-                <option value="3">Плавание</option>
-                <option value="4">Силовые упражнения</option>
+                <option value="0">@Localizer["Run"]</option>
+                <option value="1">@Localizer["Walk"]</option>
+                <option value="2">@Localizer["Bike"]</option>
+                <option value="3">@Localizer["Swim"]</option>
+                <option value="4">@Localizer["Gym"]</option>
             </select>
         </div>
         <div class="form-group">
-            <label>Датчики</label><br />
+            <label>@Localizer["Sensors"]</label><br />
             <div class="form-check">
                 @if (ViewBag.Examination.Indicator1)
                 {
@@ -28,7 +29,7 @@
                 {
                     <input type="checkbox" asp-for="Indicator1" class="form-check-input" />
                 }
-                <label class="form-check-label">Измерения кровяного давления</label>
+            <label class="form-check-label">@Localizer["DiaSis"]</label>
             </div>
             <div class="form-check">
                 @if (ViewBag.Examination.Indicator2)
@@ -39,7 +40,7 @@
                 {
                     <input type="checkbox" asp-for="Indicator2" class="form-check-input" />
                 }
-                <label class="form-check-label">Измерения температуры кожи</label>
+            <label class="form-check-label">@Localizer["Tempareture"]</label>
             </div>
             <div class="form-check">
                 @if (ViewBag.Examination.Indicator3)
@@ -50,24 +51,24 @@
                 {
                     <input type="checkbox" asp-for="Indicator3" class="form-check-input" />
                 }
-                <label class="form-check-label">Измерения пульса</label>
+            <label class="form-check-label">@Localizer["HeartRate"]</label>
             </div>
             <div class="form-check">
                 @if (ViewBag.Examination.Indicator4)
                 {
-                    <input type="checkbox" asp-for="Indicator4" class="form-check-input" checked/>
+                    <input type="checkbox" asp-for="Indicator4" class="form-check-input" checked />
                 }
                 else
                 {
                     <input type="checkbox" asp-for="Indicator4" class="form-check-input" />
                 }
-            <label class="form-check-label">Измерения сатурации</label>
+            <label class="form-check-label">@Localizer["SpO2"]</label>
             </div>
         </div>
         <div>
 
             <div>
-                <button type="submit" class="btn btn-primary mt-1">Редактировать</button>
+                <button type="submit" class="btn btn-primary mt-1">@Localizer["Update"]</button>
             </div>
         </div>
 </form>
