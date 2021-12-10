@@ -10,7 +10,7 @@ namespace Trainer.DAL.Repositories
 {
     public class PatientRepository : IRepository<Patient>
     {
-        private TrainerContext Db;
+        private readonly TrainerContext Db;
 
         public PatientRepository(TrainerContext db)
         {

@@ -31,5 +31,16 @@ namespace Trainer.Controllers
 
             return LocalRedirect(returnUrl);
         }
+
+        [HttpPost]
+        public IActionResult SetTheme(string theme, string returnUrl)
+        {
+            CookieOptions cookies = new CookieOptions();
+            cookies.Expires = DateTime.Now.AddDays(1);
+
+            Response.Cookies.Append("theme", theme, cookies);
+
+            return LocalRedirect(returnUrl);
+        }
     }
 }

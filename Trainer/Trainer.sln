@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31605.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trainer", "Trainer.csproj", "{0B0DF5B7-220F-46E1-90D5-5C5948BBA16B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainer", "Trainer.csproj", "{0B0DF5B7-220F-46E1-90D5-5C5948BBA16B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trainer.DAL", "..\Trainer.DAL\Trainer.DAL.csproj", "{EE9FAC2A-C337-4C3E-99AA-B85718242FED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainer.DAL", "..\Trainer.DAL\Trainer.DAL.csproj", "{EE9FAC2A-C337-4C3E-99AA-B85718242FED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trainer.BLL", "..\Trainer.BLL\Trainer.BLL.csproj", "{DA141829-A301-484B-9A94-0294B41987C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainer.BLL", "..\Trainer.BLL\Trainer.BLL.csproj", "{DA141829-A301-484B-9A94-0294B41987C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

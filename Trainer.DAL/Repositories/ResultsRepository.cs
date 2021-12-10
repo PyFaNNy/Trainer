@@ -11,7 +11,7 @@ namespace Trainer.DAL.Repositories
 {
     public class ResultsRepository : IRepository<Results>
     {
-        private TrainerContext Db;
+        private readonly TrainerContext Db;
 
         public ResultsRepository(TrainerContext db)
         {
