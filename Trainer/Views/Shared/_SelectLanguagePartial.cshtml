@@ -15,7 +15,7 @@
         .ToList();
 }
 
-<form asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@Context.Request.Path" method="post" class="col">
+<form asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@Context.Request.Path@Context.Request.QueryString.ToString()" method="post" class="col">
     <div class="row ml-2">
         <label class="col-form mr-1">@Localizer["Language"]:</label>
         <div>

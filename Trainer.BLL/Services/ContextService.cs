@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,18 +18,23 @@ namespace Trainer.BLL.Services
     {
         private readonly IUnitOfWork _database;
         private readonly IMapper _mapper;
-
-        public ContextService(IUnitOfWork uow, IMapper mapper)
+        private readonly IMemoryCache _cache;
+        public ContextService(IUnitOfWork uow, IMapper mapper, IMemoryCache memoryCache)
         {
             _database = uow ?? throw new ArgumentNullException($"{nameof(uow)} is null.");
             _mapper = mapper ?? throw new ArgumentNullException($"{nameof(mapper)} is null.");
+            _cache = memoryCache ?? throw new ArgumentNullException($"{nameof(memoryCache)} is null.");
         }
 
         public async Task<IEnumerable<PatientDTO>> GetPatients(SortState sortOrder)
         {
-            var people = await _database.Patients.GetAll();
-            var peopleView = _mapper.Map<IEnumerable<Patient>, IEnumerable<PatientDTO>>(people);
-
+            IEnumerable<PatientDTO> peopleView = null;
+            if (!_cache.TryGetValue("patients", out peopleView))
+            {
+                var people = await _database.Patients.GetAll();
+                peopleView = _mapper.Map<IEnumerable<Patient>, IEnumerable<PatientDTO>>(people);
+                _cache.Set("patients", peopleView, new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(30)));
+            }
             switch (sortOrder)
             {
                 case SortState.FirstNameSort:
@@ -140,8 +146,13 @@ namespace Trainer.BLL.Services
 
         public async Task<IEnumerable<ExaminationDTO>> GetExaminations(SortState sortOrder)
         {
-            var examination = await _database.Examinations.GetAll();
-            var examinationView = _mapper.Map<IEnumerable<Examination>, IEnumerable<ExaminationDTO>>(examination);
+            IEnumerable<ExaminationDTO> examinationView = null;
+            if (!_cache.TryGetValue("examinations", out examinationView))
+            {
+                var examination = await _database.Examinations.GetAll();
+                examinationView = _mapper.Map<IEnumerable<Examination>, IEnumerable<ExaminationDTO>>(examination);
+                _cache.Set("examinations", examinationView, new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(30)));
+            }
 
             switch (sortOrder)
             {
