@@ -38,7 +38,7 @@ namespace Trainer.BLL.Services
                 {
                     var patient = await _database.Patients.GetAll();
                     patientView = _mapper.Map<IEnumerable<Patient>, IEnumerable<PatientDTO>>(patient);
-                    _cache.Set("patients", patientView, new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(30)));
+                    _cache.Set("patients", patientView, new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(1)));
                 }
                 switch (sortOrder)
                 {
@@ -75,8 +75,6 @@ namespace Trainer.BLL.Services
                 }
 
                 _logger.LogInformation("Patients received successfully");
-
-
             }
             catch (Exception e)
             {
@@ -119,6 +117,7 @@ namespace Trainer.BLL.Services
             {
                 Patient newPatient = _mapper.Map<Patient>(peopleDto);
                 returnPatient = _mapper.Map<PatientDTO>(await _database.Patients.Create(newPatient));
+                _cache.Remove("patients");
                 _logger.LogInformation("Patient created successfully");
             }
             catch (Exception e)
@@ -149,6 +148,7 @@ namespace Trainer.BLL.Services
                 patient.Hobbies = peopleDto.Hobbies;
 
                 returnPatient = _mapper.Map<PatientDTO>(await _database.Patients.Update(patient));
+                _cache.Remove("patients");
                 _logger.LogInformation("Patient updated successfully");
             }
             catch (Exception e)
@@ -170,6 +170,7 @@ namespace Trainer.BLL.Services
                 }
 
                 await _database.Patients.Delete(people.Id);
+                _cache.Remove("patients");
                 _logger.LogInformation("Patient deleted successfully");
             }
             catch (Exception e)
@@ -212,7 +213,7 @@ namespace Trainer.BLL.Services
                 {
                     var examination = await _database.Examinations.GetAll();
                     examinationView = _mapper.Map<IEnumerable<Examination>, IEnumerable<ExaminationDTO>>(examination);
-                    _cache.Set("examinations", examinationView, new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(30)));
+                    _cache.Set("examinations", examinationView, new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(1)));
                 }
 
                 switch (sortOrder)
@@ -267,6 +268,7 @@ namespace Trainer.BLL.Services
                 Examination newExamination = _mapper.Map<Examination>(examinationDTO);
 
                 returnExamination = _mapper.Map<ExaminationDTO>(await _database.Examinations.Create(newExamination));
+                _cache.Remove("examinations");
                 _logger.LogInformation("Examination create successfully");
             }
             catch (Exception e)
@@ -293,6 +295,7 @@ namespace Trainer.BLL.Services
                 examination.Status = examinationDTO.Status;
 
                 returnExamination = _mapper.Map<ExaminationDTO>(await _database.Examinations.Update(examination));
+                _cache.Remove("examinations");
                 _logger.LogInformation("Examination update successfully");
             }
             catch (Exception e)
@@ -315,6 +318,7 @@ namespace Trainer.BLL.Services
                 }
 
                 await _database.Examinations.Delete(examination.Id);
+                _cache.Remove("examinations");
                 _logger.LogInformation("Examination delete successfully");
             }
             catch (Exception e)

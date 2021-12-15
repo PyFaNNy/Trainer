@@ -132,9 +132,9 @@ namespace Trainer.Controllers
         [Authorize(Roles = "doctor")]
         public async Task<RedirectToActionResult> DeleteModel(Guid[] selectedExamination)
         {
-            foreach (var patient in selectedExamination)
+            foreach (var examination in selectedExamination)
             {
-                await _contextService.DeleteExamination(patient);
+                await _contextService.DeleteExamination(examination);
             }
             return RedirectToAction("GetModels");
         }

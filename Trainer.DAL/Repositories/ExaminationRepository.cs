@@ -45,10 +45,10 @@ namespace Trainer.DAL.Repositories
 
         public async Task Delete(Guid id)
         {
-            Examination patient = Db.Examinations.Find(id);
-            if (patient != null)
+            Examination examination = Db.Examinations.Find(id);
+            if (examination != null)
             {
-                Db.Examinations.Remove(patient);
+                Db.Examinations.Remove(examination);
             }
             await Db.SaveChangesAsync();
         }
