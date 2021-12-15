@@ -16,7 +16,7 @@
     }
     else
     {
-        <link rel="stylesheet" href="@HttpContextAccessor.HttpContext.Request.Cookies["theme"]?.ToString();" id="ref-css" />
+        <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap-light.min.css" id="ref-css" />
     }
 
     <link href="~/lib/bootstrap/dist/css/bootstrap-toggle.min.css" rel="stylesheet">
@@ -66,13 +66,13 @@
                         }
                     </ul>
                 </div>
-                @if (HttpContextAccessor.HttpContext.Request.Cookies["theme"]?.ToString() == "../lib/bootstrap/dist/css/bootstrap-light.min.css")
+                @if (HttpContextAccessor.HttpContext.Request.Cookies["theme"]?.ToString() == "../lib/bootstrap/dist/css/bootstrap-dark.min.css")
                 {
-                    <input type="checkbox" id="toggle-event" checked data-toggle="toggle" data-on=@Localizer["Light"] data-off="@Localizer["Dark"]">
+                    <input type="checkbox" id="toggle-event"  data-toggle="toggle" data-on=@Localizer["Light"] data-off="@Localizer["Dark"]">
                 }
                 else
                 {
-                    <input type="checkbox" id="toggle-event" data-toggle="toggle" data-on=@Localizer["Light"] data-off="@Localizer["Dark"]">
+                    <input type="checkbox" id="toggle-event" checked data-toggle="toggle" data-on=@Localizer["Light"] data-off="@Localizer["Dark"]">
                 }
             </div>
         </nav>

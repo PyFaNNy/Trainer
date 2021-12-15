@@ -24,12 +24,14 @@ namespace Trainer.Controllers
         private readonly IMapper _mapper;
         private readonly ExaminationValidator _validator;
         private readonly IHubContext<ChartHub> _chartHub;
-        public ExaminationController(IContextService serv, ExaminationValidator validator, IMapper mapper, IHubContext<ChartHub> chartHub)
+        private readonly IMailService _mailService;
+        public ExaminationController(IContextService serv, ExaminationValidator validator, IMapper mapper, IHubContext<ChartHub> chartHub, IMailService mailService)
         {
             _contextService = serv ?? throw new ArgumentNullException($"{nameof(serv)} is null.");
             _validator = validator ?? throw new ArgumentNullException($"{nameof(validator)} is null.");
             _mapper = mapper ?? throw new ArgumentNullException($"{nameof(mapper)} is null.");
             _chartHub = chartHub ?? throw new ArgumentNullException($"{nameof(chartHub)} is null.");
+            _mailService = mailService ?? throw new ArgumentNullException($"{nameof(mailService)} is null.");
         }
 
         [HttpGet]
@@ -83,6 +85,12 @@ namespace Trainer.Controllers
                 _validator.ValidateAndThrow(model);
                 var examinationDto = _mapper.Map<ExaminationDTO>(model);
                 await _contextService.Create(examinationDto);
+                await _mailService.SendEmailAsync(new MailRequest
+                {
+                    ToEmail= "ilya.bela@yandex.ru",
+                    Body="Hello my white friend",
+                    Subject="Doctor Dre"
+                });
                 return RedirectToAction("GetModels");
             }
             catch (Exception ex)

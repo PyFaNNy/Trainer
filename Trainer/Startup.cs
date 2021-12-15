@@ -14,6 +14,7 @@ using Trainer.DAL.EF;
 using Trainer.DAL.Entities;
 using Trainer.DAL.Interfaces;
 using Trainer.DAL.Repositories;
+using Trainer.DAL.Settings;
 using Trainer.Util;
 
 namespace Trainer
@@ -42,7 +43,8 @@ namespace Trainer
                 options.Password.RequireDigit = false;
             })
             .AddEntityFrameworkStores<TrainerContext>();
-
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+            services.AddTransient<IMailService, EmailService>();
             services.AddSignalR();
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IContextService, ContextService>();

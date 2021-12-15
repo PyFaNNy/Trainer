@@ -379,3 +379,7 @@ D:\Programming\C#\Trainer\Trainer\bin\Debug\netcoreapp3.1\Trainer.DAL.pdb
 D:\Programming\C#\Trainer\Trainer\obj\Debug\netcoreapp3.1\Trainer.Views.pdb
 D:\Programming\C#\Trainer\Trainer\obj\Debug\netcoreapp3.1\Trainer.csproj.CopyComplete
 D:\Programming\C#\Trainer\Trainer\obj\Debug\netcoreapp3.1\Trainer.genruntimeconfig.cache
+D:\Programming\C#\Trainer\Trainer\bin\Debug\netcoreapp3.1\MailKit.dll
+D:\Programming\C#\Trainer\Trainer\bin\Debug\netcoreapp3.1\MimeKit.dll
+D:\Programming\C#\Trainer\Trainer\bin\Debug\netcoreapp3.1\NETCore.MailKit.dll
+D:\Programming\C#\Trainer\Trainer\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
