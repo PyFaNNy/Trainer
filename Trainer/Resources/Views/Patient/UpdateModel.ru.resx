@@ -120,6 +120,9 @@
   <data name="Age" xml:space="preserve">
     <value>Возраст</value>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>Электронная почта</value>
+  </data>
   <data name="Female" xml:space="preserve">
     <value>Женщина</value>
   </data>

@@ -120,6 +120,9 @@
   <data name="Age" xml:space="preserve">
     <value>Age</value>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
   <data name="Female" xml:space="preserve">
     <value>Female</value>
   </data>

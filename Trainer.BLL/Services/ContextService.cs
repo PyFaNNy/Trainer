@@ -140,6 +140,7 @@ namespace Trainer.BLL.Services
                 }
 
                 patient.Age = peopleDto.Age;
+                patient.Email = peopleDto.Email;
                 patient.FirstName = peopleDto.FirstName;
                 patient.LastName = peopleDto.LastName;
                 patient.MiddleName = peopleDto.MiddleName;

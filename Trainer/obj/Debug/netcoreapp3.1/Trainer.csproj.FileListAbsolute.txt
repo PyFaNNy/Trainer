@@ -383,3 +383,5 @@ D:\Programming\C#\Trainer\Trainer\bin\Debug\netcoreapp3.1\MailKit.dll
 D:\Programming\C#\Trainer\Trainer\bin\Debug\netcoreapp3.1\MimeKit.dll
 D:\Programming\C#\Trainer\Trainer\bin\Debug\netcoreapp3.1\NETCore.MailKit.dll
 D:\Programming\C#\Trainer\Trainer\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+D:\Programming\C#\Trainer\Trainer\bin\Debug\netcoreapp3.1\Scriban.dll
+D:\Programming\C#\Trainer\Trainer\obj\Debug\netcoreapp3.1\Trainer.Resources.Template.Resource.resources

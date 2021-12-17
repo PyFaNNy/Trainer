@@ -50,5 +50,11 @@ namespace Trainer.BLL.DTO
             get;
             set;
         }
+
+        public string Email
+        {
+            get;
+            set;
+        }
     }
 }

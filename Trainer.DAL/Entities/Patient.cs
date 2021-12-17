@@ -64,5 +64,11 @@ namespace Trainer.DAL.Entities
             get;
             set;
         }
+
+        public string Email
+        {
+            get;
+            set;
+        }
     }
 }

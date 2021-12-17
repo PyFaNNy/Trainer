@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using Scriban;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,8 +13,10 @@ using Trainer.BLL.DTO;
 using Trainer.BLL.Infrastructure;
 using Trainer.BLL.Interfaces;
 using Trainer.Chart;
+using Trainer.DAL.Entities;
 using Trainer.DAL.Util.Constant;
 using Trainer.Models;
+using Trainer.Resources.Template;
 using Trainer.Util;
 
 namespace Trainer.Controllers
@@ -25,13 +29,15 @@ namespace Trainer.Controllers
         private readonly ExaminationValidator _validator;
         private readonly IHubContext<ChartHub> _chartHub;
         private readonly IMailService _mailService;
-        public ExaminationController(IContextService serv, ExaminationValidator validator, IMapper mapper, IHubContext<ChartHub> chartHub, IMailService mailService)
+        private readonly UserManager<User> _userManager;
+        public ExaminationController(IContextService serv, ExaminationValidator validator, IMapper mapper, IHubContext<ChartHub> chartHub, IMailService mailService, UserManager<User> userManager)
         {
             _contextService = serv ?? throw new ArgumentNullException($"{nameof(serv)} is null.");
             _validator = validator ?? throw new ArgumentNullException($"{nameof(validator)} is null.");
             _mapper = mapper ?? throw new ArgumentNullException($"{nameof(mapper)} is null.");
             _chartHub = chartHub ?? throw new ArgumentNullException($"{nameof(chartHub)} is null.");
             _mailService = mailService ?? throw new ArgumentNullException($"{nameof(mailService)} is null.");
+            _userManager = userManager ?? throw new ArgumentNullException($"{nameof(userManager)} is null.");
         }
 
         [HttpGet]
@@ -85,11 +91,19 @@ namespace Trainer.Controllers
                 _validator.ValidateAndThrow(model);
                 var examinationDto = _mapper.Map<ExaminationDTO>(model);
                 await _contextService.Create(examinationDto);
+                var patient = await _contextService.GetPatient(examinationDto.PatientId);
+                var doctor = await _userManager.GetUserAsync(HttpContext.User);
+                var template = Template.Parse(Resource.Examination);
+                var body = template.Render(new
+                {
+                    patient = patient,
+                    model = model
+                });
                 await _mailService.SendEmailAsync(new MailRequest
                 {
-                    ToEmail= "ilya.bela@yandex.ru",
-                    Body="Hello my white friend",
-                    Subject="Doctor Dre"
+                    ToEmail= patient.Email,
+                    Body=body,
+                    Subject= $"Set Examination by {doctor?.FirstName}"
                 });
                 return RedirectToAction("GetModels");
             }
@@ -121,6 +135,22 @@ namespace Trainer.Controllers
                 _validator.ValidateAndThrow(model);
                 var examinationDto = _mapper.Map<ExaminationDTO>(model);
                 await _contextService.Update(examinationDto);
+
+                var patient = await _contextService.GetPatient(examinationDto.PatientId);
+                var doctor = await _userManager.GetUserAsync(HttpContext.User);
+                var template = Template.Parse(Resource.Examination);
+                var body = template.Render(new
+                {
+                    patient = patient,
+                    model = model
+                });
+                await _mailService.SendEmailAsync(new MailRequest
+                {
+                    ToEmail = patient.Email,
+                    Body = body,
+                    Subject = $"Update Examination by {doctor?.FirstName}"
+                });
+
                 return RedirectToAction("GetModels");
             }
             catch (RecordNotFoundException ex)
