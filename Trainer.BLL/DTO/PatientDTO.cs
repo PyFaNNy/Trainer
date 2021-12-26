@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CsvHelper.Configuration.Attributes;
+using System;
+using System.Collections.Generic;
 using Trainer.DAL.Util.Constant;
 
 namespace Trainer.BLL.DTO
@@ -10,12 +12,13 @@ namespace Trainer.BLL.DTO
             get;
             set;
         }
+
         public string FirstName
         {
             get;
             set;
         }
-
+          
         public string MiddleName
         {
             get;
@@ -45,6 +48,7 @@ namespace Trainer.BLL.DTO
             get;
             set;
         }
+
         public string Hobbies
         {
             get;
@@ -52,6 +56,18 @@ namespace Trainer.BLL.DTO
         }
 
         public string Email
+        {
+            get;
+            set;
+        }
+
+        public IList<ExaminationDTO> Examinations
+        {
+            get;
+            set;
+        }
+
+        public IList<ResultsDTO> Results
         {
             get;
             set;

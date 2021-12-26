@@ -50,5 +50,12 @@ namespace Trainer.DAL.Repositories
             }
             await Db.SaveChangesAsync(); 
         }
+
+        public async Task<IEnumerable<Patient>> Range(IEnumerable<Patient> list)
+        {
+            await Db.Patients.AddRangeAsync(list);
+            await Db.SaveChangesAsync();
+            return list;
+        }
     }
 }

@@ -12,12 +12,14 @@ namespace Trainer.BLL.Interfaces
         Task<IEnumerable<PatientDTO>> GetPatients(SortState sortOrder);
         Task<PatientDTO> Create(PatientDTO patientDTO);
         Task<PatientDTO> Update(PatientDTO patientDTO);
+        Task<IEnumerable<PatientDTO>> Range(IEnumerable<PatientDTO> list);
         Task DeletePatient(Guid id);
 
         Task<ExaminationDTO> GetExamination(Guid id);
         Task <IEnumerable<ExaminationDTO>> GetExaminations(SortState sortOrder);
         Task<ExaminationDTO> Create(ExaminationDTO examinationDTO);
         Task<ExaminationDTO> Update(ExaminationDTO examinationDTO);
+        Task<IEnumerable<ExaminationDTO>> Range(IEnumerable<ExaminationDTO> list);
         Task DeleteExamination(Guid id);
 
         Task<ResultsDTO> GetResult(Guid id);

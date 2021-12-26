@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Trainer.BLL.DTO;
 using Trainer.BLL.Infrastructure;
@@ -18,13 +17,16 @@ namespace Trainer.Controllers
     public class PatientController : Controller
     {
         private readonly IContextService _contextService;
+        private readonly ICsvParserService _csvService;
         private readonly IMapper _mapper;
         private readonly PatientValidator _validator;
-        public PatientController(IContextService serv, PatientValidator validator, IMapper mapper)
+
+        public PatientController(IContextService serv, PatientValidator validator, IMapper mapper, ICsvParserService csv)
         {
             _contextService = serv ?? throw new ArgumentNullException($"{nameof(serv)} is null.");
             _validator = validator ?? throw new ArgumentNullException($"{nameof(validator)} is null.");
             _mapper = mapper ?? throw new ArgumentNullException($"{nameof(mapper)} is null.");
+            _csvService = csv ?? throw new ArgumentNullException($"{nameof(csv)} is null.");
         }
 
         [HttpGet]
@@ -132,19 +134,35 @@ namespace Trainer.Controllers
         {
             try
             {
-                var builder = new StringBuilder();
-                builder.Append("Id;Last Name;First Name;Middle Name;Sex;Age;\n");
-                IEnumerable<PatientDTO> patientsDTO = await _contextService.GetPatients(SortState.LastNameSort);
-                var patients = _mapper.Map<List<PatientViewModel>>(patientsDTO);
-                foreach (var patient in patients)
-                {
-                    builder.AppendLine($"{patient.Id};{patient.LastName};{patient.FirstName};{patient.MiddleName};{patient.Sex};{patient.Age}\n");
-                }
-                return File(Encoding.Unicode.GetBytes(builder.ToString()), "text/csv", fileDownloadName: "Patients.csv");
+                IEnumerable<PatientDTO> patientsDTO = await _contextService.GetPatients(SortState.LastNameSort); 
+                var memoryStream = await _csvService.WriteNewCsvFile(patientsDTO);
+                return File(memoryStream, "text/csv", fileDownloadName: "Patients.csv");
             }
             catch (Exception)
             {
 
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ImportToCSV()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> ImportToCSV(CSV source)
+        {
+            try
+            {
+                var patients = await _csvService.ReadCsvFileToPatient(source.File);
+                await _contextService.Range(patients);
+                return RedirectToAction("GetModels");
+            }
+            catch (Exception e)
+            {
                 throw;
             }
         }

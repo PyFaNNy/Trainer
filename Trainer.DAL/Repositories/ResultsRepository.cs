@@ -58,5 +58,10 @@ namespace Trainer.DAL.Repositories
             }
             await Db.SaveChangesAsync();
         }
+
+        public Task<IEnumerable<Results>> Range(IEnumerable<Results> list)
+        {
+            throw new NotImplementedException();
+        }
     } 
 }

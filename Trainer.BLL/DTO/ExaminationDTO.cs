@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CsvHelper.Configuration.Attributes;
+using System;
 using Trainer.DAL.Util.Constant;
 
 namespace Trainer.BLL.DTO

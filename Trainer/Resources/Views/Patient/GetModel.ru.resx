@@ -126,6 +126,9 @@
   <data name="Dia" xml:space="preserve">
     <value>Диастола</value>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>Электронная почта</value>
+  </data>
   <data name="HeartRate" xml:space="preserve">
     <value>Пульс</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="Profil" xml:space="preserve">
     <value>Профиль</value>
+  </data>
+  <data name="RecentExamination" xml:space="preserve">
+    <value>Недавние обследования</value>
   </data>
   <data name="Sis" xml:space="preserve">
     <value>Систола</value>

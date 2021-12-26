@@ -1,12 +1,15 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Scriban;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Trainer.BLL.DTO;
@@ -25,12 +28,15 @@ namespace Trainer.Controllers
     public class ExaminationController : Controller
     {
         private readonly IContextService _contextService;
+        private readonly IMailService _mailService;
+        private readonly ICsvParserService _csvService;
         private readonly IMapper _mapper;
         private readonly ExaminationValidator _validator;
         private readonly IHubContext<ChartHub> _chartHub;
-        private readonly IMailService _mailService;
         private readonly UserManager<User> _userManager;
-        public ExaminationController(IContextService serv, ExaminationValidator validator, IMapper mapper, IHubContext<ChartHub> chartHub, IMailService mailService, UserManager<User> userManager)
+        private readonly IWebHostEnvironment _appEnvironment;
+        public ExaminationController(IContextService serv, ExaminationValidator validator, IMapper mapper, IHubContext<ChartHub> chartHub, IMailService mailService,
+                                     UserManager<User> userManager, ICsvParserService csv, IWebHostEnvironment app)
         {
             _contextService = serv ?? throw new ArgumentNullException($"{nameof(serv)} is null.");
             _validator = validator ?? throw new ArgumentNullException($"{nameof(validator)} is null.");
@@ -38,6 +44,8 @@ namespace Trainer.Controllers
             _chartHub = chartHub ?? throw new ArgumentNullException($"{nameof(chartHub)} is null.");
             _mailService = mailService ?? throw new ArgumentNullException($"{nameof(mailService)} is null.");
             _userManager = userManager ?? throw new ArgumentNullException($"{nameof(userManager)} is null.");
+            _csvService = csv ?? throw new ArgumentNullException($"{nameof(csv)} is null.");
+            _appEnvironment = app ?? throw new ArgumentNullException($"{nameof(app)} is null.");
         }
 
         [HttpGet]
@@ -174,20 +182,34 @@ namespace Trainer.Controllers
         {
             try
             {
-                var builder = new StringBuilder();
-                builder.Append("Id;Type Physical Active;Last Name;First Name;Middle Name;Age;Tonometr;Termometr;Heart Rate;Oximetr;Date\n");
-                IEnumerable<ExaminationDTO> patientsDTO = await _contextService.GetExaminations(SortState.FirstNameSort);
-                var examinations = _mapper.Map<List<ExaminationViewModel>>(patientsDTO);
-                foreach (var examination in examinations)
-                {
-                    InvCountIndicators(examination);
-                    builder.AppendLine($"{examination.Id};{examination.TypePhysicalActive};{examination.Patient.LastName};" +
-                        $"{examination.Patient.FirstName};{examination.Patient.MiddleName};{examination.Patient.Age};" +
-                        $"{examination.Indicator1};{examination.Indicator2};{examination.Indicator3};{examination.Indicator4};{examination.Date}\n");
-                }
-                return File(Encoding.Unicode.GetBytes(builder.ToString()), "text/csv", fileDownloadName: "Examinations.csv");
+                IEnumerable<ExaminationDTO> examinatiomDTO = await _contextService.GetExaminations(SortState.FirstNameSort);
+                var memoryStream =await _csvService.WriteNewCsvFile(examinatiomDTO);
+                return File(memoryStream, "text/csv", fileDownloadName: "Examinations.csv");
             }
-            catch (Exception)
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ImportToCSV()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> ImportToCSV(CSV source)
+        {
+            try
+            {
+                var examinations = await _csvService.ReadCsvFileToExamination(source.File);
+                await _contextService.Range(examinations);
+                return RedirectToAction("GetModels");
+            }
+            catch (Exception e)
             {
 
                 throw;

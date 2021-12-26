@@ -44,10 +44,11 @@ namespace Trainer
             })
             .AddEntityFrameworkStores<TrainerContext>();
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
-            services.AddTransient<IMailService, EmailService>();
             services.AddSignalR();
             services.AddAutoMapper(typeof(Startup));
-            services.AddScoped<IContextService, ContextService>();
+            services.AddTransient<IContextService, ContextService>();
+            services.AddTransient<IMailService, EmailService>();
+            services.AddTransient<ICsvParserService, CsvParserService>();
             services.AddScoped<IUnitOfWork, EFUnitOfWork>();
             services.AddScoped<PatientValidator>();
             services.AddScoped<ExaminationValidator>();

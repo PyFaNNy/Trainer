@@ -81,7 +81,7 @@ namespace Trainer.BLL.Services
                 _logger.LogError(e.GetBaseException().Message);
             }
 
-            return patientView;
+            return patientView.ToList();
         }
 
         public async Task<PatientDTO> GetPatient(Guid id)
@@ -151,6 +151,24 @@ namespace Trainer.BLL.Services
                 returnPatient = _mapper.Map<PatientDTO>(await _database.Patients.Update(patient));
                 _cache.Remove("patients");
                 _logger.LogInformation("Patient updated successfully");
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.GetBaseException().Message);
+            }
+
+            return returnPatient;
+        }
+
+        public async Task<IEnumerable<PatientDTO>> Range(IEnumerable<PatientDTO> list)
+        {
+            IEnumerable<PatientDTO> returnPatient = null;
+            try
+            {
+                var patients = _mapper.Map<IEnumerable<PatientDTO>, IEnumerable<Patient>>(list);
+                returnPatient = _mapper.Map<IEnumerable<PatientDTO>>(await _database.Patients.Range(patients));
+                _cache.Remove("patients");
+                _logger.LogInformation("Patients added successfully");
             }
             catch (Exception e)
             {
@@ -258,7 +276,7 @@ namespace Trainer.BLL.Services
             }
 
 
-            return examinationView;
+            return examinationView.ToList();
         }
 
         public async Task<ExaminationDTO> Create(ExaminationDTO examinationDTO)
@@ -304,6 +322,24 @@ namespace Trainer.BLL.Services
                 _logger.LogError(e.GetBaseException().Message);
             }
 
+
+            return returnExamination;
+        }
+
+        public async Task<IEnumerable<ExaminationDTO>> Range(IEnumerable<ExaminationDTO> list)
+        {
+            IEnumerable<ExaminationDTO> returnExamination = null;
+            try
+            {
+                var examinations = _mapper.Map<IEnumerable<ExaminationDTO>, IEnumerable<Examination>>(list);
+                returnExamination = _mapper.Map<IEnumerable<ExaminationDTO>>(await _database.Examinations.Range(examinations));
+                _cache.Remove("examinations");
+                _logger.LogInformation("Examination create successfully");
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.GetBaseException().Message);
+            }
 
             return returnExamination;
         }
@@ -453,5 +489,6 @@ namespace Trainer.BLL.Services
             }
 
         }
+
     }
 }
